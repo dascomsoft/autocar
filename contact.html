@@ -2,331 +2,181 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>AUTO CAR - Galerie | Photos de nos véhicules et décorations</title>
-    <meta name="description" content="Découvrez notre galerie photo : véhicules premium, décorations de mariage, événements spéciaux au Cameroun.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUTO CAR - Contact | Réservation et informations</title>
+    <meta name="description" content="Contactez AUTO CAR pour vos réservations. Disponibles 24h/24 au 681 919 191. Location de véhicules et décoration au Cameroun.">
     <link rel="icon" type="image/png" href="images/autocarlogo.jpg">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        /* Reset et base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Container principal de la galerie - CENTRÉ */
-        .gallery-main-container {
-            max-width: 1400px;
+        /* Styles spécifiques pour la page contact */
+        .contact-page-container {
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
-            text-align: center;
         }
-
-        /* En-tête de la galerie - CENTRÉ */
-        .gallery-header {
-            text-align: center;
-            margin-bottom: 3rem;
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
-
-        .gallery-header h1 {
-            font-size: 2.5rem;
+        
+        .contact-card {
+            background: rgba(51, 65, 85, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(34,197,94,0.2);
+            transition: all 0.3s;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: #22c55e;
+        }
+        
+        .contact-card h3 {
             color: #22c55e;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
         }
-
-        .gallery-header p {
-            color: #cbd5e1;
+        
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .contact-detail:hover {
+            background: rgba(34, 197, 94, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .contact-detail i {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #22c55e;
+            border-radius: 50%;
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .contact-detail a, .contact-detail span {
+            color: #e2e8f0;
+            text-decoration: none;
             font-size: 1.1rem;
         }
-
-        /* Filtres - CENTRÉS */
-        .gallery-filters {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 0.75rem 2rem;
-            background: rgba(51, 65, 85, 0.5);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            border-radius: 50px;
-            color: #e2e8f0;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-        }
-
-        .filter-btn:hover, .filter-btn.active {
-            background: #22c55e;
-            border-color: #22c55e;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* GRILLE CENTRÉE - Les images sont parfaitement centrées */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto;
-        }
-
-        /* Élément de la galerie - CHAQUE IMAGE EST CENTRÉE DANS SA CELLULE */
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            cursor: pointer;
-            background: #1e293b;
-            width: 100%;
-            aspect-ratio: 1 / 0.8;
-            margin: 0 auto;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            transition: all 0.3s;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(34,197,94,0.2);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        /* Overlay au survol */
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(34,197,94,0.8), rgba(22,163,74,0.8));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        .gallery-overlay i {
-            font-size: 2.5rem;
-            color: white;
-            transform: scale(0);
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-overlay i {
-            transform: scale(1);
-        }
-
-        /* Lightbox */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-            text-align: center;
-        }
-
-        .lightbox img {
-            max-width: 100%;
-            max-height: 85vh;
-            object-fit: contain;
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(34,197,94,0.3);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            font-size: 2rem;
-            color: white;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .lightbox-close:hover {
+        
+        .contact-detail a:hover {
             color: #22c55e;
         }
-
-        .lightbox-prev, .lightbox-next {
+        
+        .info-box {
+            background: rgba(51, 65, 85, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(34,197,94,0.2);
+        }
+        
+        .info-box h3 {
+            color: #22c55e;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .info-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .info-box ul li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .info-box ul li:before {
+            content: "✓";
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(34,197,94,0.5);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+            left: 0;
+            color: #22c55e;
+            font-weight: bold;
+        }
+        
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .city-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: rgba(34, 197, 94, 0.1);
+            border-radius: 10px;
+        }
+        
+        .city-item i {
+            color: #22c55e;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 10px;
+            color: white;
+            font-family: 'Nunito', sans-serif;
             transition: all 0.3s;
         }
-
-        .lightbox-prev {
-            left: -70px;
-        }
-
-        .lightbox-next {
-            right: -70px;
-        }
-
-        .lightbox-prev:hover, .lightbox-next:hover {
-            background: #22c55e;
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .lightbox-counter {
-            position: absolute;
-            bottom: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            font-size: 0.9rem;
-            white-space: nowrap;
-        }
-
-        /* RESPONSIVE - Centrage parfait sur tous les écrans */
         
-        /* Desktop moyen (3 colonnes) */
-        @media (max-width: 1200px) {
-            .gallery-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 1.2rem;
-            }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: #22c55e;
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
         }
-
-        /* Tablette (2 colonnes) */
+        
+        .btn-block {
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
         @media (max-width: 768px) {
-            .gallery-main-container {
+            .contact-page-container {
                 padding: 1rem;
             }
-
-            .gallery-header h1 {
-                font-size: 1.8rem;
-            }
-
-            .gallery-header p {
-                font-size: 1rem;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-
-            .filter-btn {
-                padding: 0.5rem 1.2rem;
+            
+            .contact-detail a, .contact-detail span {
                 font-size: 0.9rem;
             }
-
-            .lightbox-prev, .lightbox-next {
-                width: 40px;
-                height: 40px;
-            }
-
-            .lightbox-prev {
-                left: 10px;
-            }
-
-            .lightbox-next {
-                right: 10px;
-            }
-        }
-
-        /* Mobile (2 colonnes avec espacement réduit) */
-        @media (max-width: 480px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.8rem;
-            }
-
-            .gallery-header h1 {
-                font-size: 1.5rem;
-            }
-
-            .filter-btn {
-                padding: 0.4rem 1rem;
-                font-size: 0.8rem;
-            }
-
-            .gallery-item {
-                aspect-ratio: 1 / 0.9;
-            }
-        }
-
-        /* Petit mobile (2 colonnes) */
-        @media (max-width: 380px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.6rem;
-            }
-        }
-
-        /* Animation d'apparition */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .gallery-item {
-            animation: fadeInUp 0.5s ease forwards;
-        }
-
-        /* Aucune image */
-        .no-images {
-            text-align: center;
-            padding: 4rem;
-            background: rgba(51, 65, 85, 0.5);
-            border-radius: 20px;
-            color: #cbd5e1;
-            grid-column: 1 / -1;
         }
     </style>
 </head>
@@ -344,46 +194,141 @@
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="apropos.html">À propos</a></li>
                 <li><a href="vehicules.html">Véhicules</a></li>
-                <li><a href="gallerie.html" class="active">Galerie</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="gallerie.html">Galerie</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
         </div>
     </nav>
 
     <section class="hero" style="min-height: 40vh; background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 100%), url('images/auto.jpg'); background-size: cover; background-position: center;">
         <div class="hero-content">
-            <h1 data-aos="fade-up">Notre Galerie</h1>
-            <p data-aos="fade-up" data-aos-delay="200">Découvrez nos véhicules et créations en images</p>
+            <h1 data-aos="fade-up">Contactez-Nous</h1>
+            <p data-aos="fade-up" data-aos-delay="200">Notre équipe est à votre disposition 24h/24 et 7j/7</p>
         </div>
     </section>
 
-    <div class="gallery-main-container">
-        <div class="gallery-header" data-aos="fade-up">
-            <h1>📸 Notre Galerie Photo</h1>
-            <p>Explorez notre collection de véhicules et décorations exceptionnelles</p>
+    <div class="contact-page-container">
+        <div class="contact-grid">
+            <div class="contact-card" data-aos="fade-right">
+                <h3><i class="fas fa-phone-alt"></i> Nos Numéros</h3>
+                <div class="contact-detail">
+                    <i class="fas fa-phone-alt"></i>
+                    <a href="tel:+237681919191">681 919 191</a>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-phone-alt"></i>
+                    <a href="tel:+237699133839">699 133 839</a>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-phone-alt"></i>
+                    <a href="tel:+237690977410">690 977 410</a>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-phone-alt"></i>
+                    <a href="tel:+237694461980">694 461 980</a>
+                </div>
+            </div>
+
+            <div class="contact-card" data-aos="fade-up">
+                <h3><i class="fab fa-whatsapp"></i> WhatsApp Business</h3>
+                <div class="contact-detail">
+                    <i class="fab fa-whatsapp"></i>
+                    <a href="https://wa.me/237690977410" target="_blank">690 977 410</a>
+                </div>
+                <button class="btn btn-whatsapp btn-block" onclick="window.open('https://wa.me/237690977410', '_blank')" style="margin-top: 1rem;">
+                    <i class="fab fa-whatsapp"></i> Nous écrire sur WhatsApp
+                </button>
+            </div>
+
+            <div class="contact-card" data-aos="fade-left">
+                <h3><i class="fas fa-envelope"></i> Email</h3>
+                <div class="contact-detail">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:contact@autocar.cm">contact@autocar.cm</a>
+                </div>
+            </div>
         </div>
 
-        <div class="gallery-filters" data-aos="fade-up" data-aos-delay="100">
-            <button class="filter-btn active" onclick="filterGallery('all')">📷 Tous</button>
-            <button class="filter-btn" onclick="filterGallery('vehicles')">🚗 Véhicules</button>
-            <button class="filter-btn" onclick="filterGallery('decoration')">🎨 Décorations</button>
+        <!-- Formulaire de contact -->
+        <div class="info-box" data-aos="fade-up">
+            <h3><i class="fas fa-paper-plane"></i> Envoyez-nous un message</h3>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label>Nom complet *</label>
+                    <input type="text" id="contactName" required placeholder="Votre nom">
+                </div>
+                <div class="form-group">
+                    <label>Téléphone *</label>
+                    <input type="tel" id="contactPhone" required placeholder="Votre numéro">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="contactEmail" placeholder="votre@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Ville *</label>
+                    <select id="contactCity">
+                        <option value="">Sélectionnez votre ville</option>
+                        <option value="Yaoundé">Yaoundé</option>
+                        <option value="Douala">Douala</option>
+                        <option value="Bafoussam">Bafoussam</option>
+                        <option value="Garoua">Garoua</option>
+                        <option value="Maroua">Maroua</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Message *</label>
+                    <textarea id="contactMessage" rows="5" required placeholder="Décrivez votre besoin (dates, destination, type de véhicule...)"></textarea>
+                </div>
+                <button type="submit" class="btn btn-whatsapp btn-block">
+                    <i class="fab fa-whatsapp"></i> Envoyer via WhatsApp
+                </button>
+            </form>
         </div>
 
-        <div id="galleryContainer" class="gallery-grid"></div>
-    </div>
+        <div class="info-box" data-aos="fade-up">
+            <h3><i class="fas fa-info-circle"></i> Informations importantes</h3>
+            <p>🛑 Merci d'avoir contacté AUTO CAR 🚐</p>
+            <p>Veuillez nous communiquer votre ville, les dates de votre besoin et la destination</p>
+            <p>Pour une réponse et une prise en charge rapide, appelez-nous directement</p>
+        </div>
 
-    <!-- Lightbox -->
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <div class="lightbox-content" onclick="event.stopPropagation()">
-            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-            <div class="lightbox-prev" onclick="prevImage()">
-                <i class="fas fa-chevron-left"></i>
+        <div class="info-box" data-aos="fade-up">
+            <h3><i class="fas fa-gift"></i> Nos Services</h3>
+            <ul>
+                <li>Location 🚗 et décoration 🌹 des voitures</li>
+                <li>Prise et Dépôt à l'aéroport ✈️</li>
+                <li>Package des véhicules pour mariage 🚔🚘🚖💕</li>
+                <li>Location à l'heure</li>
+                <li>Mise en place des partenariats</li>
+                <li>Conseil personnalisé</li>
+            </ul>
+        </div>
+
+        <div class="info-box" data-aos="fade-up">
+            <h3><i class="fas fa-shield-alt"></i> Nos Conditions</h3>
+            <ul>
+                <li>Location avec chauffeur 👮</li>
+                <li>Carburation à la charge du client ⛽</li>
+                <li>Péages à la charge du client 🅿️</li>
+                <li>Hébergement du chauffeur à la charge du client 🏠</li>
+            </ul>
+        </div>
+
+        <!-- Villes couvertes -->
+        <div class="info-box" data-aos="fade-up">
+            <h3><i class="fas fa-map-marker-alt"></i> Villes couvertes</h3>
+            <div class="cities-grid">
+                <div class="city-item"><i class="fas fa-check-circle"></i> Yaoundé</div>
+                <div class="city-item"><i class="fas fa-check-circle"></i> Douala</div>
+                <div class="city-item"><i class="fas fa-check-circle"></i> Bafoussam</div>
+                <div class="city-item"><i class="fas fa-check-circle"></i> Garoua</div>
+                <div class="city-item"><i class="fas fa-check-circle"></i> Maroua</div>
+                <div class="city-item"><i class="fas fa-check-circle"></i> Bertoua</div>
+                <div class="city-item"><i class="fas fa-check-circle"></i> Limbé</div>
+                <div class="city-item"><i class="fas fa-check-circle"></i> Kribi</div>
             </div>
-            <img id="lightboxImage" src="" alt="">
-            <div class="lightbox-next" onclick="nextImage()">
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="lightbox-counter" id="lightboxCounter"></div>
         </div>
     </div>
 
@@ -442,141 +387,26 @@
             else navbar.classList.remove('scrolled');
         });
 
-        // Données de la galerie
-        const galleryData = {
-            all: [
-                { src: 'images/auto.jpg', category: 'vehicles', title: 'Notre flotte premium' },
-                { src: 'images/auto1.jpg', category: 'vehicles', title: 'Véhicule de luxe' },
-                { src: 'images/auto2.jpg', category: 'vehicles', title: 'Toyota Auris' },
-                { src: 'images/auto3.jpg', category: 'vehicles', title: 'Rush 2019' },
-                { src: 'images/auto4.jpg', category: 'vehicles', title: 'SUV Confort' },
-                { src: 'images/auto6.jpg', category: 'vehicles', title: 'Véhicule spacieux' },
-                { src: 'images/auto7.jpg', category: 'vehicles', title: 'Berline élégante' },
-                { src: 'images/auto8.jpg', category: 'vehicles', title: 'SUV moderne' },
-                { src: 'images/auto9.jpg', category: 'vehicles', title: 'Confort absolu' },
-                { src: 'images/auto10.jpg', category: 'vehicles', title: 'Luxe et élégance' },
-                { src: 'images/auto11.jpg', category: 'vehicles', title: 'Véhicule premium' },
-                { src: 'images/auto12.webp', category: 'vehicles', title: 'Design moderne' },
-                { src: 'images/hiace.jpg', category: 'vehicles', title: 'Toyota Hiace' },
-                { src: 'images/landcruiser.jpg', category: 'vehicles', title: 'Land Cruiser' },
-                { src: 'images/toyotapickup-hilux.jpg', category: 'vehicles', title: 'Toyota Hilux Pick-up' },
-                { src: 'images/voiture-decor1.jpg', category: 'decoration', title: 'Décoration mariage' },
-                { src: 'images/voiture-decoration.jpg', category: 'decoration', title: 'Décoration personnalisée' }
-            ],
-            vehicles: [
-                { src: 'images/auto.jpg', category: 'vehicles', title: 'Notre flotte premium' },
-                { src: 'images/auto1.jpg', category: 'vehicles', title: 'Véhicule de luxe' },
-                { src: 'images/auto2.jpg', category: 'vehicles', title: 'Toyota Auris' },
-                { src: 'images/auto3.jpg', category: 'vehicles', title: 'Rush 2019' },
-                { src: 'images/auto4.jpg', category: 'vehicles', title: 'SUV Confort' },
-                { src: 'images/auto6.jpg', category: 'vehicles', title: 'Véhicule spacieux' },
-                { src: 'images/auto7.jpg', category: 'vehicles', title: 'Berline élégante' },
-                { src: 'images/auto8.jpg', category: 'vehicles', title: 'SUV moderne' },
-                { src: 'images/auto9.jpg', category: 'vehicles', title: 'Confort absolu' },
-                { src: 'images/auto10.jpg', category: 'vehicles', title: 'Luxe et élégance' },
-                { src: 'images/auto11.jpg', category: 'vehicles', title: 'Véhicule premium' },
-                { src: 'images/auto12.webp', category: 'vehicles', title: 'Design moderne' },
-                { src: 'images/hiace.jpg', category: 'vehicles', title: 'Toyota Hiace' },
-                { src: 'images/landcruiser.jpg', category: 'vehicles', title: 'Land Cruiser' },
-                { src: 'images/toyotapickup-hilux.jpg', category: 'vehicles', title: 'Toyota Hilux Pick-up' }
-            ],
-            decoration: [
-                { src: 'images/voiture-decor1.jpg', category: 'decoration', title: 'Décoration mariage' },
-                { src: 'images/voiture-decoration.jpg', category: 'decoration', title: 'Décoration personnalisée' }
-            ]
-        };
-
-        let currentImages = [];
-        let currentIndex = 0;
-
-        function filterGallery(category) {
-            // Mettre à jour les boutons actifs
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('active');
-            });
-            if (event && event.target) {
-                event.target.classList.add('active');
-            } else {
-                buttons[0].classList.add('active');
-            }
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('contactName').value;
+            const phone = document.getElementById('contactPhone').value;
+            const email = document.getElementById('contactEmail').value;
+            const city = document.getElementById('contactCity').value;
+            const message = document.getElementById('contactMessage').value;
             
-            // Filtrer les images
-            currentImages = galleryData[category] || galleryData.all;
-            const container = document.getElementById('galleryContainer');
+            let whatsappMessage = `🛑 NOUVEAU MESSAGE AUTO CAR 🚐%0A%0A`;
+            whatsappMessage += `📝 Nom: ${name}%0A`;
+            whatsappMessage += `📞 Téléphone: ${phone}%0A`;
+            if(email) whatsappMessage += `📧 Email: ${email}%0A`;
+            if(city) whatsappMessage += `📍 Ville: ${city}%0A`;
+            whatsappMessage += `💬 Message: ${message}%0A%0A`;
+            whatsappMessage += `🛑 Merci de me contacter pour une réservation rapide.`;
             
-            if (currentImages.length === 0) {
-                container.innerHTML = '<div class="no-images">Aucune image dans cette catégorie</div>';
-                return;
-            }
-            
-            container.innerHTML = currentImages.map((img, index) => `
-                <div class="gallery-item" data-index="${index}" onclick="openLightbox(${index})">
-                    <img src="${img.src}" alt="${img.title}" onerror="this.src='images/auto.jpg'">
-                    <div class="gallery-overlay">
-                        <i class="fas fa-search-plus"></i>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function openLightbox(index) {
-            currentIndex = index;
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImage = document.getElementById('lightboxImage');
-            const counter = document.getElementById('lightboxCounter');
-            
-            lightboxImage.src = currentImages[currentIndex].src;
-            counter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        function prevImage() {
-            currentIndex--;
-            if (currentIndex < 0) {
-                currentIndex = currentImages.length - 1;
-            }
-            const lightboxImage = document.getElementById('lightboxImage');
-            const counter = document.getElementById('lightboxCounter');
-            
-            lightboxImage.src = currentImages[currentIndex].src;
-            counter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
-        }
-
-        function nextImage() {
-            currentIndex++;
-            if (currentIndex >= currentImages.length) {
-                currentIndex = 0;
-            }
-            const lightboxImage = document.getElementById('lightboxImage');
-            const counter = document.getElementById('lightboxCounter');
-            
-            lightboxImage.src = currentImages[currentIndex].src;
-            counter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
-        }
-
-        // Navigation au clavier
-        document.addEventListener('keydown', function(e) {
-            const lightbox = document.getElementById('lightbox');
-            if (lightbox.classList.contains('active')) {
-                if (e.key === 'ArrowLeft') {
-                    prevImage();
-                } else if (e.key === 'ArrowRight') {
-                    nextImage();
-                } else if (e.key === 'Escape') {
-                    closeLightbox();
-                }
-            }
+            window.open(`https://wa.me/237690977410?text=${whatsappMessage}`, '_blank');
+            this.reset();
+            alert('✓ Message préparé ! Vous allez être redirigé vers WhatsApp pour confirmer l\'envoi.');
         });
-
-        // Initialisation
-        filterGallery('all');
     </script>
 </body>
 </html>
