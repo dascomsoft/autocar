@@ -17,14 +17,15 @@
             box-sizing: border-box;
         }
 
-        /* Container principal de la galerie */
+        /* Container principal de la galerie - CENTRÉ */
         .gallery-main-container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 2rem;
+            text-align: center;
         }
 
-        /* En-tête de la galerie */
+        /* En-tête de la galerie - CENTRÉ */
         .gallery-header {
             text-align: center;
             margin-bottom: 3rem;
@@ -41,7 +42,7 @@
             font-size: 1.1rem;
         }
 
-        /* Filtres */
+        /* Filtres - CENTRÉS */
         .gallery-filters {
             display: flex;
             justify-content: center;
@@ -68,22 +69,26 @@
             transform: translateY(-2px);
         }
 
-        /* Grille de galerie - Version desktop et mobile */
+        /* GRILLE CENTRÉE - Les images sont parfaitement centrées */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
-            margin-bottom: 3rem;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
         }
 
-        /* Élément de la galerie */
+        /* Élément de la galerie - CHAQUE IMAGE EST CENTRÉE DANS SA CELLULE */
         .gallery-item {
             position: relative;
             overflow: hidden;
             border-radius: 15px;
             cursor: pointer;
             background: #1e293b;
+            width: 100%;
             aspect-ratio: 1 / 0.8;
+            margin: 0 auto;
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
             transition: all 0.3s;
         }
@@ -97,6 +102,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
             transition: transform 0.5s ease;
         }
 
@@ -157,6 +163,7 @@
             position: relative;
             max-width: 90%;
             max-height: 90%;
+            text-align: center;
         }
 
         .lightbox img {
@@ -209,7 +216,6 @@
             transform: translateY(-50%) scale(1.1);
         }
 
-        /* Compteur d'images */
         .lightbox-counter {
             position: absolute;
             bottom: -40px;
@@ -217,18 +223,12 @@
             transform: translateX(-50%);
             color: white;
             font-size: 0.9rem;
+            white-space: nowrap;
         }
 
-        /* Aucune image */
-        .no-images {
-            text-align: center;
-            padding: 4rem;
-            background: rgba(51, 65, 85, 0.5);
-            border-radius: 20px;
-            color: #cbd5e1;
-        }
-
-        /* Responsive Desktop Moyen */
+        /* RESPONSIVE - Centrage parfait sur tous les écrans */
+        
+        /* Desktop moyen (3 colonnes) */
         @media (max-width: 1200px) {
             .gallery-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -236,7 +236,7 @@
             }
         }
 
-        /* Responsive Tablette */
+        /* Tablette (2 colonnes) */
         @media (max-width: 768px) {
             .gallery-main-container {
                 padding: 1rem;
@@ -274,7 +274,7 @@
             }
         }
 
-        /* Responsive Mobile */
+        /* Mobile (2 colonnes avec espacement réduit) */
         @media (max-width: 480px) {
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -295,6 +295,14 @@
             }
         }
 
+        /* Petit mobile (2 colonnes) */
+        @media (max-width: 380px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.6rem;
+            }
+        }
+
         /* Animation d'apparition */
         @keyframes fadeInUp {
             from {
@@ -309,6 +317,16 @@
 
         .gallery-item {
             animation: fadeInUp 0.5s ease forwards;
+        }
+
+        /* Aucune image */
+        .no-images {
+            text-align: center;
+            padding: 4rem;
+            background: rgba(51, 65, 85, 0.5);
+            border-radius: 20px;
+            color: #cbd5e1;
+            grid-column: 1 / -1;
         }
     </style>
 </head>
@@ -346,10 +364,9 @@
         </div>
 
         <div class="gallery-filters" data-aos="fade-up" data-aos-delay="100">
-            <button class="filter-btn active" onclick="filterGallery('all')">Tous</button>
+            <button class="filter-btn active" onclick="filterGallery('all')">📷 Tous</button>
             <button class="filter-btn" onclick="filterGallery('vehicles')">🚗 Véhicules</button>
             <button class="filter-btn" onclick="filterGallery('decoration')">🎨 Décorations</button>
-            <button class="filter-btn" onclick="filterGallery('events')">🎉 Événements</button>
         </div>
 
         <div id="galleryContainer" class="gallery-grid"></div>
@@ -466,10 +483,6 @@
             decoration: [
                 { src: 'images/voiture-decor1.jpg', category: 'decoration', title: 'Décoration mariage' },
                 { src: 'images/voiture-decoration.jpg', category: 'decoration', title: 'Décoration personnalisée' }
-            ],
-            events: [
-                { src: 'images/voiture-decor1.jpg', category: 'events', title: 'Mariage' },
-                { src: 'images/voiture-decoration.jpg', category: 'events', title: 'Cérémonie' }
             ]
         };
 
@@ -478,10 +491,15 @@
 
         function filterGallery(category) {
             // Mettre à jour les boutons actifs
-            document.querySelectorAll('.filter-btn').forEach(btn => {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.classList.add('active');
+            if (event && event.target) {
+                event.target.classList.add('active');
+            } else {
+                buttons[0].classList.add('active');
+            }
             
             // Filtrer les images
             currentImages = galleryData[category] || galleryData.all;

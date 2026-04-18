@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>AUTO CAR - Galerie | Photos de nos véhicules et décorations</title>
     <meta name="description" content="Découvrez notre galerie photo : véhicules premium, décorations de mariage, événements spéciaux au Cameroun.">
     <link rel="icon" type="image/png" href="images/autocarlogo.jpg">
@@ -10,73 +10,136 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        /* Styles spécifiques pour la galerie */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            padding: 2rem;
+        /* Reset et base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Container principal de la galerie - CENTRÉ */
+        .gallery-main-container {
             max-width: 1400px;
             margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
         }
-        
+
+        /* En-tête de la galerie - CENTRÉ */
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-header h1 {
+            font-size: 2.5rem;
+            color: #22c55e;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-header p {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+        }
+
+        /* Filtres - CENTRÉS */
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 2rem;
+            background: rgba(51, 65, 85, 0.5);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 50px;
+            color: #e2e8f0;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #22c55e;
+            border-color: #22c55e;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* GRILLE CENTRÉE */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        /* Élément de la galerie */
         .gallery-item {
             position: relative;
             overflow: hidden;
             border-radius: 15px;
             cursor: pointer;
-            aspect-ratio: 4/3;
             background: #1e293b;
+            width: 100%;
+            aspect-ratio: 1 / 0.8;
+            margin: 0 auto;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s;
         }
-        
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(34,197,94,0.2);
+        }
+
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
             transition: transform 0.5s ease;
         }
-        
+
         .gallery-item:hover img {
             transform: scale(1.1);
         }
-        
+
+        /* Overlay au survol */
         .gallery-overlay {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
+            background: linear-gradient(135deg, rgba(34,197,94,0.8), rgba(22,163,74,0.8));
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-        
+
         .gallery-item:hover .gallery-overlay {
             opacity: 1;
         }
-        
+
         .gallery-overlay i {
-            font-size: 3rem;
-            color: #22c55e;
+            font-size: 2.5rem;
+            color: white;
             transform: scale(0);
             transition: transform 0.3s ease;
         }
-        
+
         .gallery-item:hover .gallery-overlay i {
             transform: scale(1);
         }
-        
-        .gallery-filters {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 2rem 0;
-        }
-        
+
         /* Lightbox */
         .lightbox {
             display: none;
@@ -91,38 +154,166 @@
             align-items: center;
             cursor: pointer;
         }
-        
+
         .lightbox.active {
             display: flex;
         }
-        
-        .lightbox img {
+
+        .lightbox-content {
+            position: relative;
             max-width: 90%;
             max-height: 90%;
+            text-align: center;
+        }
+
+        .lightbox img {
+            max-width: 100%;
+            max-height: 85vh;
             object-fit: contain;
             border-radius: 10px;
+            box-shadow: 0 0 30px rgba(34,197,94,0.3);
         }
-        
+
         .lightbox-close {
             position: absolute;
-            top: 20px;
-            right: 40px;
-            font-size: 3rem;
+            top: -40px;
+            right: 0;
+            font-size: 2rem;
             color: white;
             cursor: pointer;
             transition: color 0.3s;
         }
-        
+
         .lightbox-close:hover {
             color: #22c55e;
         }
-        
-        @media (max-width: 768px) {
+
+        .lightbox-prev, .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(34,197,94,0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .lightbox-prev {
+            left: -70px;
+        }
+
+        .lightbox-next {
+            right: -70px;
+        }
+
+        .lightbox-prev:hover, .lightbox-next:hover {
+            background: #22c55e;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
             .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 1rem;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-main-container {
                 padding: 1rem;
             }
+
+            .gallery-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .gallery-header p {
+                font-size: 1rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .filter-btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .lightbox-prev, .lightbox-next {
+                width: 40px;
+                height: 40px;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+
+            .gallery-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.4rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .gallery-item {
+                aspect-ratio: 1 / 0.9;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gallery-item {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .no-images {
+            text-align: center;
+            padding: 4rem;
+            background: rgba(51, 65, 85, 0.5);
+            border-radius: 20px;
+            color: #cbd5e1;
+            grid-column: 1 / -1;
         }
     </style>
 </head>
@@ -153,19 +344,34 @@
         </div>
     </section>
 
-    <div class="container" style="max-width: 1400px;">
-        <div class="gallery-filters" data-aos="fade-up">
-            <button class="btn" onclick="filterGallery('all')">Tous</button>
-            <button class="btn btn-outline" onclick="filterGallery('vehicles')">Véhicules</button>
-            <button class="btn btn-outline" onclick="filterGallery('decoration')">Décorations</button>
+    <div class="gallery-main-container">
+        <div class="gallery-header" data-aos="fade-up">
+            <h1>📸 Notre Galerie Photo</h1>
+            <p>Explorez notre collection de véhicules et décorations exceptionnelles</p>
         </div>
+
+        <div class="gallery-filters" data-aos="fade-up" data-aos-delay="100">
+            <button class="filter-btn active" onclick="filterGallery('all')">📷 Tous</button>
+            <button class="filter-btn" onclick="filterGallery('vehicles')">🚗 Véhicules</button>
+            <button class="filter-btn" onclick="filterGallery('decoration')">🎨 Décorations</button>
+        </div>
+
         <div id="galleryContainer" class="gallery-grid"></div>
     </div>
 
     <!-- Lightbox -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <span class="lightbox-close">&times;</span>
-        <img id="lightboxImage" src="" alt="">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <div class="lightbox-prev" onclick="prevImage()">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <img id="lightboxImage" src="" alt="">
+            <div class="lightbox-next" onclick="nextImage()">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="lightbox-counter" id="lightboxCounter"></div>
+        </div>
     </div>
 
     <footer>
@@ -223,52 +429,132 @@
             else navbar.classList.remove('scrolled');
         });
 
+        // ============================================
+        // DONNÉES CENTRALISÉES - UN SEUL ENDROIT À MODIFIER
+        // ============================================
+        
+        // 1. Données des véhicules (ajoute/supprime ici)
+        const vehiclesData = [
+            { src: 'images/auto.jpg', category: 'vehicles', title: 'Notre flotte premium' },
+            { src: 'images/auto1.jpg', category: 'vehicles', title: 'Véhicule de luxe' },
+            { src: 'images/auto2.jpg', category: 'vehicles', title: 'Toyota Auris' },
+            { src: 'images/auto3.jpg', category: 'vehicles', title: 'Rush 2019' },
+            { src: 'images/auto4.jpg', category: 'vehicles', title: 'SUV Confort' },
+            { src: 'images/auto6.jpg', category: 'vehicles', title: 'Véhicule spacieux' },
+            { src: 'images/auto7.jpg', category: 'vehicles', title: 'Berline élégante' },
+            { src: 'images/auto8.jpg', category: 'vehicles', title: 'SUV moderne' },
+            { src: 'images/auto9.jpg', category: 'vehicles', title: 'Confort absolu' },
+            { src: 'images/auto10.jpg', category: 'vehicles', title: 'Luxe et élégance' },
+            { src: 'images/auto11.jpg', category: 'vehicles', title: 'Véhicule premium' },
+            { src: 'images/auto12.webp', category: 'vehicles', title: 'Design moderne' },
+            { src: 'images/hiace.jpg', category: 'vehicles', title: 'Toyota Hiace' },
+            { src: 'images/landcruiser.jpg', category: 'vehicles', title: 'Land Cruiser' },
+            { src: 'images/toyotapickup-hilux.jpg', category: 'vehicles', title: 'Toyota Hilux Pick-up' }
+        ];
+
+        // 2. Données des décorations (ajoute/supprime ici)
+        const decorationData = [
+            { src: 'images/voiture-decor1.jpg', category: 'decoration', title: 'Décoration mariage' },
+            { src: 'images/voiture-decoration.jpg', category: 'decoration', title: 'Décoration personnalisée' }
+        ];
+
+        // 3. Construction automatique de l'objet principal (SANS DUPLICATION)
         const galleryData = {
-            all: [
-                'images/auto.jpg', 'images/auto1.jpg', 'images/auto2.jpg', 'images/auto3.jpg',
-                'images/auto4.jpg', 'images/auto6.jpg', 'images/auto7.jpg', 'images/auto8.jpg',
-                'images/auto9.jpg', 'images/auto10.jpg', 'images/auto11.jpg', 'images/auto12.webp',
-                'images/hiace.jpg', 'images/landcruiser.jpg', 'images/toyotapickup-hilux.jpg',
-                'images/voiture-decor1.jpg', 'images/voiture-decoration.jpg'
-            ],
-            vehicles: [
-                'images/auto.jpg', 'images/auto1.jpg', 'images/auto2.jpg', 'images/auto3.jpg',
-                'images/auto4.jpg', 'images/auto6.jpg', 'images/auto7.jpg', 'images/auto8.jpg',
-                'images/auto9.jpg', 'images/auto10.jpg', 'images/auto11.jpg', 'images/auto12.webp',
-                'images/hiace.jpg', 'images/landcruiser.jpg', 'images/toyotapickup-hilux.jpg'
-            ],
-            decoration: [
-                'images/voiture-decor1.jpg', 'images/voiture-decoration.jpg'
-            ]
+            all: [...vehiclesData, ...decorationData],  // Fusion automatique
+            vehicles: vehiclesData,                      // Référence directe
+            decoration: decorationData                   // Référence directe
         };
 
+        // Variables pour la lightbox
+        let currentImages = [];
+        let currentIndex = 0;
+
         function filterGallery(category) {
-            const container = document.getElementById('galleryContainer');
-            const images = galleryData[category] || galleryData.all;
+            // Mettre à jour les boutons actifs
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            if (event && event.target) {
+                event.target.classList.add('active');
+            } else {
+                buttons[0].classList.add('active');
+            }
             
-            container.innerHTML = images.map(img => `
-                <div class="gallery-item" data-aos="zoom-in" onclick="openLightbox('${img}')">
-                    <img src="${img}" alt="Galerie AUTO CAR" onerror="this.src='images/auto.jpg'">
+            // Récupérer les images filtrées
+            currentImages = galleryData[category] || galleryData.all;
+            const container = document.getElementById('galleryContainer');
+            
+            if (currentImages.length === 0) {
+                container.innerHTML = '<div class="no-images">Aucune image dans cette catégorie</div>';
+                return;
+            }
+            
+            // Générer l'affichage
+            container.innerHTML = currentImages.map((img, index) => `
+                <div class="gallery-item" data-index="${index}" onclick="openLightbox(${index})">
+                    <img src="${img.src}" alt="${img.title}" onerror="this.src='images/auto.jpg'">
                     <div class="gallery-overlay">
                         <i class="fas fa-search-plus"></i>
                     </div>
                 </div>
             `).join('');
-            
-            // Réinitialiser AOS
-            AOS.refresh();
         }
 
-        function openLightbox(imgSrc) {
+        function openLightbox(index) {
+            currentIndex = index;
             const lightbox = document.getElementById('lightbox');
             const lightboxImage = document.getElementById('lightboxImage');
-            lightboxImage.src = imgSrc;
+            const counter = document.getElementById('lightboxCounter');
+            
+            lightboxImage.src = currentImages[currentIndex].src;
+            counter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
             lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         function closeLightbox() {
             document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
         }
+
+        function prevImage() {
+            currentIndex--;
+            if (currentIndex < 0) {
+                currentIndex = currentImages.length - 1;
+            }
+            const lightboxImage = document.getElementById('lightboxImage');
+            const counter = document.getElementById('lightboxCounter');
+            
+            lightboxImage.src = currentImages[currentIndex].src;
+            counter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+        }
+
+        function nextImage() {
+            currentIndex++;
+            if (currentIndex >= currentImages.length) {
+                currentIndex = 0;
+            }
+            const lightboxImage = document.getElementById('lightboxImage');
+            const counter = document.getElementById('lightboxCounter');
+            
+            lightboxImage.src = currentImages[currentIndex].src;
+            counter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+        }
+
+        // Navigation au clavier
+        document.addEventListener('keydown', function(e) {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'ArrowLeft') {
+                    prevImage();
+                } else if (e.key === 'ArrowRight') {
+                    nextImage();
+                } else if (e.key === 'Escape') {
+                    closeLightbox();
+                }
+            }
+        });
 
         // Initialisation
         filterGallery('all');

@@ -2,19 +2,351 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AUTO CAR - Nos Véhicules | Location SUV, Pick-up, Luxe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>AUTO CAR - Nos Véhicules | Location SUV, Pick-up, Luxe Cameroun</title>
     <meta name="description" content="Découvrez notre flotte de véhicules premium : Toyota Land Cruiser, Lexus, Range Rover, et plus. Tarifs compétitifs au Cameroun.">
     <link rel="icon" type="image/png" href="images/autocarlogo.jpg">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* ============================================ */
+        /* STYLES SPÉCIFIQUES POUR LA PAGE VÉHICULES    */
+        /* ============================================ */
+        
+        /* Container */
+        .vehicles-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* En-tête de la page */
+        .vehicles-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .vehicles-header h1 {
+            font-size: 2.5rem;
+            color: #22c55e;
+            margin-bottom: 1rem;
+        }
+
+        .vehicles-header p {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+        }
+
+        /* Filtres */
+        .vehicles-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 2rem;
+            background: rgba(51, 65, 85, 0.5);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 50px;
+            color: #e2e8f0;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #22c55e;
+            border-color: #22c55e;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* GRID */
+        .vehicles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        /* CARD */
+        .vehicle-card {
+            background: #1e293b;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .vehicle-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(34,197,94,0.3);
+        }
+
+        /* IMAGE */
+        .vehicle-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .vehicle-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* CONTENT */
+        .vehicle-info {
+            padding: 1.5rem;
+        }
+
+        .vehicle-info h3 {
+            color: #22c55e;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .vehicle-location {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .vehicle-location i {
+            color: #22c55e;
+        }
+
+        .vehicle-description {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        /* PRICE BOX */
+        .price-list {
+            background: rgba(51, 65, 85, 0.5);
+            padding: 1rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+        }
+
+        .price-list h4 {
+            margin-bottom: 0.5rem;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+        }
+
+        .price-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .price-list li {
+            padding: 0.3rem 0;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            border-bottom: 1px dashed rgba(34,197,94,0.2);
+        }
+
+        .price-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* BUTTON */
+        .btn-reserver {
+            width: 100%;
+            margin-top: 1rem;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            border: none;
+            padding: 0.8rem;
+            border-radius: 10px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-reserver:hover {
+            background: #16a34a;
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(34,197,94,0.4);
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 450px;
+            width: 90%;
+            color: white;
+            border: 1px solid rgba(34,197,94,0.3);
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(34,197,94,0.3);
+            padding-bottom: 1rem;
+        }
+
+        .modal-header h3 {
+            color: #22c55e;
+            font-size: 1.3rem;
+        }
+
+        .close {
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: #22c55e;
+        }
+
+        /* FORM */
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 10px;
+            border: 1px solid rgba(34,197,94,0.3);
+            background: rgba(15, 23, 42, 0.8);
+            color: white;
+            font-family: 'Nunito', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #22c55e;
+            box-shadow: 0 0 10px rgba(34,197,94,0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .vehicles-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            
+            .vehicles-container {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .vehicles-header h1 {
+                font-size: 2rem;
+            }
+            
+            .vehicles-header p {
+                font-size: 1rem;
+            }
+            
+            .filter-btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .vehicles-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .vehicles-container {
+                padding: 1rem;
+            }
+            
+            .modal-content {
+                margin: 30% auto;
+                padding: 1.5rem;
+            }
+        }
+
+        /* Aucun résultat */
+        .no-results {
+            text-align: center;
+            padding: 4rem;
+            background: rgba(51, 65, 85, 0.5);
+            border-radius: 20px;
+            color: #cbd5e1;
+            grid-column: 1 / -1;
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            color: #22c55e;
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="logo">
-                <img src="images/autocarlogo.jpg" alt="AUTO CAR Logo">
+                <img src="images/autocarlogo.jpg" alt="AUTO CAR Logo" onerror="this.src='images/auto.jpg'">
                 <div>
                     <h1>AUTO CAR</h1>
                     <p>Service de Location et Décoration</p>
@@ -30,43 +362,50 @@
         </div>
     </nav>
 
-    <section class="hero" style="min-height: 50vh; background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 100%), url('../images/auto.jpg'); background-size: cover; background-position: center;">
+    <section class="hero" style="min-height: 40vh; background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 100%), url('images/auto.jpg'); background-size: cover; background-position: center;">
         <div class="hero-content">
-            <h1 data-aos="fade-up">Notre Flotte Premium</h1>
-            <p data-aos="fade-up" data-aos-delay="200">Choisissez le véhicule idéal parmi notre sélection de qualité</p>
-            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="400">
-                <button class="btn" onclick="filterVehicles('all')">Tous</button>
-                <button class="btn btn-outline" onclick="filterVehicles('suv')">SUV</button>
-                <button class="btn btn-outline" onclick="filterVehicles('pickup')">Pick-up</button>
-                <button class="btn btn-outline" onclick="filterVehicles('luxe')">Luxe</button>
+            <h1 data-aos="fade-up">Nos Véhicules</h1>
+            <p data-aos="fade-up" data-aos-delay="200">Choisissez le véhicule idéal parmi notre flotte premium</p>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
+                <button class="btn filter-trigger active" data-filter="all">🚗 Tous</button>
+                <button class="btn btn-outline filter-trigger" data-filter="suv">🏔️ SUV</button>
+                <button class="btn btn-outline filter-trigger" data-filter="pickup">🛻 Pick-up</button>
+                <button class="btn btn-outline filter-trigger" data-filter="luxe">💎 Luxe</button>
             </div>
         </div>
     </section>
 
-    <div class="container">
+    <div class="vehicles-container">
+        <div class="vehicles-header" data-aos="fade-up">
+            <h1>🚘 Notre Flotte Premium</h1>
+            <p>Des véhicules récents, entretenus et disponibles immédiatement</p>
+        </div>
+
         <div id="vehiclesContainer" class="vehicles-grid"></div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal de réservation -->
     <div id="reservationModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h3>Réserver <span id="modalVehicleName"></span></h3>
+            <div class="modal-header">
+                <h3>📝 Réserver <span id="modalVehicleName"></span></h3>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
             <form id="reservationForm">
                 <div class="form-group">
                     <label>Type de location :</label>
                     <select id="reservationType" required>
-                        <option value="inCity">Dans la ville</option>
-                        <option value="outCity">Hors ville</option>
-                        <option value="wedding">Mariage sans décoration</option>
-                        <option value="weddingWithDeco">Mariage avec décoration</option>
+                        <option value="inCity">🏙️ Dans la ville</option>
+                        <option value="outCity">🌍 Hors ville</option>
+                        <option value="wedding">💒 Mariage sans décoration</option>
+                        <option value="weddingWithDeco">💒💕 Mariage avec décoration</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Détails supplémentaires :</label>
-                    <textarea id="reservationDetails" rows="4" placeholder="Ville, dates, destination..."></textarea>
+                    <textarea id="reservationDetails" rows="4" placeholder="Veuillez indiquer votre ville, les dates souhaitées et la destination..."></textarea>
                 </div>
-                <button type="button" class="btn btn-whatsapp" onclick="confirmReservation()">
+                <button type="button" class="btn-reserver" onclick="confirmReservation()">
                     <i class="fab fa-whatsapp"></i> Confirmer via WhatsApp
                 </button>
             </form>
@@ -129,7 +468,18 @@
             else navbar.classList.remove('scrolled');
         });
 
+        // Gestion des filtres actifs
+        const filterButtons = document.querySelectorAll('.filter-trigger');
         let currentFilter = 'all';
+        
+        function setActiveFilter(activeBtn) {
+            filterButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.add('btn-outline');
+            });
+            activeBtn.classList.add('active');
+            activeBtn.classList.remove('btn-outline');
+        }
         
         function filterVehicles(category) {
             currentFilter = category;
@@ -144,24 +494,30 @@
                 filtered = vehiclesData.filter(v => v.category === 'luxe');
             }
             
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="no-results"><i class="fas fa-car-side"></i><h3>Aucun véhicule dans cette catégorie</h3><p>Veuillez sélectionner une autre catégorie</p></div>`;
+                return;
+            }
+            
             container.innerHTML = filtered.map(vehicle => `
                 <div class="vehicle-card" data-aos="fade-up">
                     <img src="${vehicle.mainImage}" alt="${vehicle.name}" onerror="this.src='images/auto.jpg'">
                     <div class="vehicle-info">
                         <h3>${vehicle.name}</h3>
                         <p class="vehicle-location"><i class="fas fa-map-marker-alt"></i> ${vehicle.location}</p>
-                        <p>${vehicle.description}</p>
+                        <p class="vehicle-description">${vehicle.description}</p>
                         <div class="price-list">
                             <h4>📋 Tarifs :</h4>
-                            <ul style="list-style: none; padding-left: 0;">
+                            <ul>
                                 ${vehicle.prices.inCity ? `<li>🏙️ Ville : ${vehicle.prices.inCity.toLocaleString()} FRS CFA/jour</li>` : ''}
                                 ${vehicle.prices.outCity ? `<li>🌍 Hors ville : ${vehicle.prices.outCity.toLocaleString()} FRS CFA/jour</li>` : ''}
                                 ${vehicle.prices.outCityMultiDay ? `<li>🌍 Hors ville (+1j) : ${vehicle.prices.outCityMultiDay.toLocaleString()} FRS CFA/jour</li>` : ''}
+                                ${vehicle.prices.outCityRoundTrip ? `<li>🔄 A/R Hors ville : ${vehicle.prices.outCityRoundTrip.toLocaleString()} FRS CFA</li>` : ''}
                                 ${vehicle.prices.wedding ? `<li>💒 Mariage : ${vehicle.prices.wedding.toLocaleString()} FRS CFA</li>` : ''}
                                 ${vehicle.prices.weddingWithDeco ? `<li>💒💕 Mariage déco : ${vehicle.prices.weddingWithDeco.toLocaleString()} FRS CFA</li>` : ''}
                             </ul>
                         </div>
-                        <button class="btn btn-reserver" onclick="openReservationModal(${vehicle.id})">
+                        <button class="btn-reserver" onclick="openReservationModal(${vehicle.id})">
                             <i class="fab fa-whatsapp"></i> Réserver maintenant
                         </button>
                     </div>
@@ -172,8 +528,22 @@
             AOS.refresh();
         }
         
+        // Ajouter les événements aux boutons de filtre
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+                setActiveFilter(this);
+                filterVehicles(filter);
+            });
+        });
+        
         // Initial display
         filterVehicles('all');
+        
+        // Rendre les fonctions globales pour les appels HTML
+        window.openReservationModal = openReservationModal;
+        window.closeModal = closeModal;
+        window.confirmReservation = confirmReservation;
     </script>
 </body>
 </html>
