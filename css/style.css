@@ -15,6 +15,7 @@ body {
     background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
     color: #f1f5f9;
     overflow-x: hidden;
+    padding-top: 80px; /* IMPORTANT: Compense la navbar fixed */
 }
 
 /* Animations */
@@ -105,13 +106,15 @@ body {
     background: #16a34a;
 }
 
-/* Navigation améliorée */
+/* Navigation améliorée - CORRIGÉE POUR MOBILE */
 .navbar {
     background: rgba(15, 23, 42, 0.95);
     backdrop-filter: blur(10px);
     padding: 1rem 2rem;
     position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     z-index: 1000;
     transition: all 0.3s ease;
@@ -141,8 +144,8 @@ body {
 }
 
 .logo img {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #22c55e;
@@ -155,7 +158,7 @@ body {
 
 .logo h1 {
     color: #22c55e;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 800;
     background: linear-gradient(135deg, #22c55e, #16a34a);
     -webkit-background-clip: text;
@@ -164,7 +167,7 @@ body {
 }
 
 .logo p {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: #94a3b8;
     font-weight: 300;
 }
@@ -172,7 +175,7 @@ body {
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
 }
 
@@ -183,6 +186,7 @@ body {
     transition: all 0.3s;
     position: relative;
     padding: 5px 0;
+    font-size: 0.95rem;
 }
 
 .nav-links a::before {
@@ -208,7 +212,7 @@ body {
 
 /* Hero Section améliorée */
 .hero {
-    min-height: 100vh;
+    min-height: calc(100vh - 80px);
     background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%), url('../images/auto.jpg');
     background-size: cover;
     background-position: center;
@@ -235,10 +239,11 @@ body {
     position: relative;
     z-index: 2;
     animation: fadeInUp 1s ease;
+    padding: 2rem;
 }
 
 .hero-content h1 {
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: 800;
     margin-bottom: 1rem;
     background: linear-gradient(135deg, #ffffff, #22c55e);
@@ -248,7 +253,7 @@ body {
 }
 
 .hero-content p {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-bottom: 2rem;
     opacity: 0.9;
 }
@@ -262,7 +267,7 @@ body {
 
 .btn {
     display: inline-block;
-    padding: 14px 35px;
+    padding: 12px 30px;
     background: linear-gradient(135deg, #22c55e, #16a34a);
     color: white;
     text-decoration: none;
@@ -273,6 +278,7 @@ body {
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    font-size: 0.95rem;
 }
 
 .btn::before {
@@ -520,7 +526,7 @@ body {
 
 .testimonial-card {
     background: rgba(51, 65, 85, 0.5);
- backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     padding: 2rem;
     border-radius: 20px;
     text-align: center;
@@ -693,15 +699,91 @@ footer {
     animation: fadeInUp 0.3s ease;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* ============================================ */
+/* RESPONSIVE - CORRIGÉ POUR ÉVITER LE DÉBORDEMENT */
+/* ============================================ */
+
+/* Tablette et mobile */
+@media (max-width: 992px) {
+    body {
+        padding-top: 120px; /* Plus de padding car navbar plus haute sur mobile */
+    }
+    
+    .navbar {
+        padding: 0.8rem 1rem;
+    }
+    
     .nav-container {
         flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .logo {
+        gap: 10px;
+    }
+    
+    .logo img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .logo h1 {
+        font-size: 1.3rem;
+    }
+    
+    .nav-links {
         gap: 1rem;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .nav-links a {
+        font-size: 0.85rem;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .btn {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobile moyen */
+@media (max-width: 768px) {
+    body {
+        padding-top: 130px;
+    }
+    
+    .navbar.scrolled {
+        padding: 0.5rem 1rem;
+    }
+    
+    .nav-links {
+        gap: 0.8rem;
+        flex-wrap: wrap;
+    }
+    
+    .nav-links a {
+        font-size: 0.8rem;
+    }
+    
+    .hero {
+        min-height: calc(100vh - 130px);
     }
     
     .hero-content h1 {
         font-size: 2rem;
+    }
+    
+    .hero-content p {
+        font-size: 0.9rem;
     }
     
     .section-title {
@@ -710,5 +792,127 @@ footer {
     
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .stat-card {
+        padding: 1.5rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .services-grid,
+    .vehicles-grid,
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+}
+
+/* Petit mobile */
+@media (max-width: 480px) {
+    body {
+        padding-top: 150px;
+    }
+    
+    .navbar {
+        padding: 0.6rem 0.8rem;
+    }
+    
+    .logo {
+        gap: 8px;
+    }
+    
+    .logo img {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .logo h1 {
+        font-size: 1.1rem;
+    }
+    
+    .logo p {
+        font-size: 0.6rem;
+    }
+    
+    .nav-links {
+        gap: 0.5rem;
+    }
+    
+    .nav-links a {
+        font-size: 0.7rem;
+    }
+    
+    .hero {
+        min-height: calc(100vh - 150px);
+    }
+    
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 0.8rem;
+    }
+    
+    .btn {
+        padding: 8px 20px;
+        font-size: 0.85rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .service-card,
+    .vehicle-card,
+    .testimonial-card {
+        padding: 1rem;
+    }
+    
+    .vehicle-card img {
+        height: 180px;
+    }
+    
+    .modal-content {
+        padding: 1.5rem;
+        margin: 1rem;
+        width: 95%;
+    }
+}
+
+/* Très petit mobile */
+@media (max-width: 360px) {
+    body {
+        padding-top: 170px;
+    }
+    
+    .nav-links {
+        gap: 0.4rem;
+    }
+    
+    .nav-links a {
+        font-size: 0.65rem;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.3rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
     }
 }
