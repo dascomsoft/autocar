@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUTO CAR - Nos Véhicules | Location SUV, Pick-up, Luxe</title>
+    <meta name="description" content="Découvrez notre flotte de véhicules premium : Toyota Land Cruiser, Lexus, Range Rover, et plus. Tarifs compétitifs au Cameroun.">
+    <link rel="icon" type="image/png" href="images/autocarlogo.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/autocarlogo.jpg" alt="AUTO CAR Logo">
+                <div>
+                    <h1>AUTO CAR</h1>
+                    <p>Service de Location et Décoration</p>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="apropos.html">À propos</a></li>
+                <li><a href="vehicules.html" class="active">Véhicules</a></li>
+                <li><a href="gallerie.html">Galerie</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" style="min-height: 50vh; background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 100%), url('../images/auto.jpg'); background-size: cover; background-position: center;">
+        <div class="hero-content">
+            <h1 data-aos="fade-up">Notre Flotte Premium</h1>
+            <p data-aos="fade-up" data-aos-delay="200">Choisissez le véhicule idéal parmi notre sélection de qualité</p>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="400">
+                <button class="btn" onclick="filterVehicles('all')">Tous</button>
+                <button class="btn btn-outline" onclick="filterVehicles('suv')">SUV</button>
+                <button class="btn btn-outline" onclick="filterVehicles('pickup')">Pick-up</button>
+                <button class="btn btn-outline" onclick="filterVehicles('luxe')">Luxe</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div id="vehiclesContainer" class="vehicles-grid"></div>
+    </div>
+
+    <!-- Modal -->
+    <div id="reservationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>Réserver <span id="modalVehicleName"></span></h3>
+            <form id="reservationForm">
+                <div class="form-group">
+                    <label>Type de location :</label>
+                    <select id="reservationType" required>
+                        <option value="inCity">Dans la ville</option>
+                        <option value="outCity">Hors ville</option>
+                        <option value="wedding">Mariage sans décoration</option>
+                        <option value="weddingWithDeco">Mariage avec décoration</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Détails supplémentaires :</label>
+                    <textarea id="reservationDetails" rows="4" placeholder="Ville, dates, destination..."></textarea>
+                </div>
+                <button type="button" class="btn btn-whatsapp" onclick="confirmReservation()">
+                    <i class="fab fa-whatsapp"></i> Confirmer via WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>AUTO CAR</h3>
+                <p>Service de location de véhicules et décoration au Cameroun. Excellence et professionnalisme depuis 2015.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="https://wa.me/237690977410"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Liens rapides</h3>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                    <li><a href="vehicules.html">Véhicules</a></li>
+                    <li><a href="gallerie.html">Galerie</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> 681 919 191</li>
+                    <li><i class="fas fa-phone"></i> 699 133 839</li>
+                    <li><i class="fas fa-phone"></i> 690 977 410</li>
+                    <li><i class="fab fa-whatsapp"></i> WhatsApp : 690 977 410</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Horaires</h3>
+                <ul>
+                    <li>Lundi - Dimanche : 24h/24</li>
+                    <li>Service client : 7j/7</li>
+                    <li>Réservation en ligne</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 AUTO CAR - Location et décoration de voitures. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+        
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        });
+
+        let currentFilter = 'all';
+        
+        function filterVehicles(category) {
+            currentFilter = category;
+            const container = document.getElementById('vehiclesContainer');
+            let filtered = vehiclesData;
+            
+            if (category === 'suv') {
+                filtered = vehiclesData.filter(v => v.category === 'suv');
+            } else if (category === 'pickup') {
+                filtered = vehiclesData.filter(v => v.category === 'pickup');
+            } else if (category === 'luxe') {
+                filtered = vehiclesData.filter(v => v.category === 'luxe');
+            }
+            
+            container.innerHTML = filtered.map(vehicle => `
+                <div class="vehicle-card" data-aos="fade-up">
+                    <img src="${vehicle.mainImage}" alt="${vehicle.name}" onerror="this.src='images/auto.jpg'">
+                    <div class="vehicle-info">
+                        <h3>${vehicle.name}</h3>
+                        <p class="vehicle-location"><i class="fas fa-map-marker-alt"></i> ${vehicle.location}</p>
+                        <p>${vehicle.description}</p>
+                        <div class="price-list">
+                            <h4>📋 Tarifs :</h4>
+                            <ul style="list-style: none; padding-left: 0;">
+                                ${vehicle.prices.inCity ? `<li>🏙️ Ville : ${vehicle.prices.inCity.toLocaleString()} FRS CFA/jour</li>` : ''}
+                                ${vehicle.prices.outCity ? `<li>🌍 Hors ville : ${vehicle.prices.outCity.toLocaleString()} FRS CFA/jour</li>` : ''}
+                                ${vehicle.prices.outCityMultiDay ? `<li>🌍 Hors ville (+1j) : ${vehicle.prices.outCityMultiDay.toLocaleString()} FRS CFA/jour</li>` : ''}
+                                ${vehicle.prices.wedding ? `<li>💒 Mariage : ${vehicle.prices.wedding.toLocaleString()} FRS CFA</li>` : ''}
+                                ${vehicle.prices.weddingWithDeco ? `<li>💒💕 Mariage déco : ${vehicle.prices.weddingWithDeco.toLocaleString()} FRS CFA</li>` : ''}
+                            </ul>
+                        </div>
+                        <button class="btn btn-reserver" onclick="openReservationModal(${vehicle.id})">
+                            <i class="fab fa-whatsapp"></i> Réserver maintenant
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Réinitialiser AOS pour les nouveaux éléments
+            AOS.refresh();
+        }
+        
+        // Initial display
+        filterVehicles('all');
+    </script>
+</body>
+</html>
