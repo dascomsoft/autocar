@@ -4,20 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>AUTO CAR - Galerie | Photos de nos véhicules et décorations</title>
-    <meta name="description" content="Découvrez notre galerie photo : véhicules premium, décorations de mariage, événements spéciaux au Cameroun.">
+    <meta name="description" content="Découvrez notre galerie photo : véhicules Classe Éco, Confort, Prestige, Pick-up, Mini bus, Bus et décorations de mariage au Cameroun.">
     <link rel="icon" type="image/png" href="images/autocarlogo.jpg">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        /* Reset et base */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Container principal de la galerie - CENTRÉ */
         .gallery-main-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -25,7 +23,6 @@
             text-align: center;
         }
 
-        /* En-tête de la galerie - CENTRÉ */
         .gallery-header {
             text-align: center;
             margin-bottom: 3rem;
@@ -42,17 +39,16 @@
             font-size: 1.1rem;
         }
 
-        /* Filtres - CENTRÉS */
         .gallery-filters {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 0.8rem;
             margin-bottom: 3rem;
             flex-wrap: wrap;
         }
 
         .filter-btn {
-            padding: 0.75rem 2rem;
+            padding: 0.7rem 1.5rem;
             background: rgba(51, 65, 85, 0.5);
             border: 1px solid rgba(34, 197, 94, 0.3);
             border-radius: 50px;
@@ -60,6 +56,7 @@
             cursor: pointer;
             transition: all 0.3s;
             font-weight: 600;
+            font-size: 0.9rem;
         }
 
         .filter-btn:hover, .filter-btn.active {
@@ -69,7 +66,6 @@
             transform: translateY(-2px);
         }
 
-        /* GRILLE CENTRÉE */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -79,7 +75,6 @@
             margin: 0 auto;
         }
 
-        /* Élément de la galerie */
         .gallery-item {
             position: relative;
             overflow: hidden;
@@ -110,7 +105,6 @@
             transform: scale(1.1);
         }
 
-        /* Overlay au survol */
         .gallery-overlay {
             position: absolute;
             top: 0;
@@ -140,7 +134,6 @@
             transform: scale(1);
         }
 
-        /* Lightbox */
         .lightbox {
             display: none;
             position: fixed;
@@ -226,7 +219,6 @@
             white-space: nowrap;
         }
 
-        /* RESPONSIVE */
         @media (max-width: 1200px) {
             .gallery-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -238,34 +230,27 @@
             .gallery-main-container {
                 padding: 1rem;
             }
-
             .gallery-header h1 {
                 font-size: 1.8rem;
             }
-
             .gallery-header p {
                 font-size: 1rem;
             }
-
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
             }
-
             .filter-btn {
-                padding: 0.5rem 1.2rem;
-                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
             }
-
             .lightbox-prev, .lightbox-next {
                 width: 40px;
                 height: 40px;
             }
-
             .lightbox-prev {
                 left: 10px;
             }
-
             .lightbox-next {
                 right: 10px;
             }
@@ -276,22 +261,18 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 0.8rem;
             }
-
             .gallery-header h1 {
                 font-size: 1.5rem;
             }
-
             .filter-btn {
-                padding: 0.4rem 1rem;
-                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.7rem;
             }
-
             .gallery-item {
                 aspect-ratio: 1 / 0.9;
             }
         }
 
-        /* Animation */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -340,20 +321,27 @@
     <section class="hero" style="min-height: 40vh; background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 100%), url('images/auto.jpg'); background-size: cover; background-position: center;">
         <div class="hero-content">
             <h1 data-aos="fade-up">Notre Galerie</h1>
-            <p data-aos="fade-up" data-aos-delay="200">Découvrez nos véhicules et créations en images</p>
+            <p data-aos="fade-up" data-aos-delay="200">Découvrez nos véhicules par catégorie</p>
         </div>
     </section>
 
     <div class="gallery-main-container">
         <div class="gallery-header" data-aos="fade-up">
-            <h1>📸 Notre Galerie Photo</h1>
-            <p>Explorez notre collection de véhicules et décorations exceptionnelles</p>
+            <h1>Notre Galerie Photo</h1>
+            <p>Explorez notre collection de véhicules par catégorie</p>
         </div>
 
         <div class="gallery-filters" data-aos="fade-up" data-aos-delay="100">
-            <button class="filter-btn active" onclick="filterGallery('all')">📷 Tous</button>
-            <button class="filter-btn" onclick="filterGallery('vehicles')">🚗 Véhicules</button>
-            <button class="filter-btn" onclick="filterGallery('decoration')">🎨 Décorations</button>
+            <button class="filter-btn active" onclick="filterGallery('all')">Tous</button>
+            <button class="filter-btn" onclick="filterGallery('eco')">Classe Éco</button>
+            <button class="filter-btn" onclick="filterGallery('confort')">Confort</button>
+            <button class="filter-btn" onclick="filterGallery('confortplus')">Confort Plus</button>
+            <button class="filter-btn" onclick="filterGallery('prestige')">Prestige</button>
+            <button class="filter-btn" onclick="filterGallery('prestigeplus')">Prestige Plus</button>
+            <button class="filter-btn" onclick="filterGallery('pickup')">Pick-up</button>
+            <button class="filter-btn" onclick="filterGallery('minibus')">Mini Bus</button>
+            <button class="filter-btn" onclick="filterGallery('bus')">Bus</button>
+            <button class="filter-btn" onclick="filterGallery('wedding')">Mariage</button>
         </div>
 
         <div id="galleryContainer" class="gallery-grid"></div>
@@ -430,47 +418,138 @@
         });
 
         // ============================================
-        // DONNÉES CENTRALISÉES - UN SEUL ENDROIT À MODIFIER
+        // DONNÉES DE LA GALERIE PAR CATÉGORIE
         // ============================================
-        
-        // 1. Données des véhicules (ajoute/supprime ici)
-        const vehiclesData = [
-            { src: 'images/auto.jpg', category: 'vehicles', title: 'Notre flotte premium' },
-            { src: 'images/auto1.jpg', category: 'vehicles', title: 'Véhicule de luxe' },
-            { src: 'images/auto2.jpg', category: 'vehicles', title: 'Toyota Auris' },
-            { src: 'images/auto3.jpg', category: 'vehicles', title: 'Rush 2019' },
-            { src: 'images/auto4.jpg', category: 'vehicles', title: 'SUV Confort' },
-            { src: 'images/auto6.jpg', category: 'vehicles', title: 'Véhicule spacieux' },
-            { src: 'images/auto7.jpg', category: 'vehicles', title: 'Berline élégante' },
-            { src: 'images/auto8.jpg', category: 'vehicles', title: 'SUV moderne' },
-            { src: 'images/auto9.jpg', category: 'vehicles', title: 'Confort absolu' },
-            { src: 'images/auto10.jpg', category: 'vehicles', title: 'Luxe et élégance' },
-            { src: 'images/auto11.jpg', category: 'vehicles', title: 'Véhicule premium' },
-            { src: 'images/auto12.webp', category: 'vehicles', title: 'Design moderne' },
-            { src: 'images/hiace.jpg', category: 'vehicles', title: 'Toyota Hiace' },
-            { src: 'images/landcruiser.jpg', category: 'vehicles', title: 'Land Cruiser' },
-            { src: 'images/toyotapickup-hilux.jpg', category: 'vehicles', title: 'Toyota Hilux Pick-up' }
+
+        // Classe Éco (Véhicules économiques)
+        const ecoData = [
+            { src: 'images/TOYOTA-YARIS-2010.jpeg', category: 'eco', title: 'Toyota Yaris' },
+            { src: 'images/TOYOTA-YARIS-2010.jpg', category: 'eco', title: 'Toyota Yaris' },
+            { src: 'images/toyota-yaris-coupe-corolla.jpeg', category: 'eco', title: 'Toyota Yaris Coupe' },
+            { src: 'images/TOYOTA-YARIS-VERSO-2005.jpeg', category: 'eco', title: 'Toyota Yaris Verso' },
+            { src: 'images/TOYOTA-YARIS.jpeg', category: 'eco', title: 'Toyota Yaris' },
+            { src: 'images/toyota-115.jpg', category: 'eco', title: 'Toyota 115' },
+            { src: 'images/NISSAN-LMR.jpeg', category: 'eco', title: 'Nissan LMR' },
+            { src: 'images/avensis-tete-cochon.jpeg', category: 'eco', title: 'Avensis Tête de Cochon' },
+            { src: 'images/Tete-de-Cochon-avensis.png', category: 'eco', title: 'Avensis Tête de Cochon' },
+            { src: 'images/AVENSIS TÊTES DE COCHON .png', category: 'eco', title: 'Avensis Tête de Cochon' },
+            { src: 'images/Mazda-3.jpg', category: 'eco', title: 'Mazda 3' },
+            { src: 'images/MAZDA 3 MULLE.jpeg', category: 'eco', title: 'Mazda 3 Mulle' },
+            { src: 'images/toyota-auris.jpeg', category: 'eco', title: 'Toyota Auris' },
+            { src: 'images/toyota-avensis-verso.jpg', category: 'eco', title: 'Toyota Avensis Verso' },
+            { src: 'images/toyota-verso.jpeg', category: 'eco', title: 'Toyota Verso' },
+            { src: 'images/HYUNDAI-ELENTRA.jpeg', category: 'eco', title: 'Hyundai Elantra' },
+            { src: 'images/mazda-elantra.jpg', category: 'eco', title: 'Mazda Elantra' },
+            { src: 'images/MAZDA 6 ELENTRA.jpeg', category: 'eco', title: 'Mazda 6' },
+            { src: 'images/toyota-elangacia.jpeg', category: 'eco', title: 'Toyota Elengacia' },
+            { src: 'images/Toyota-ELEGANCIA.jpg', category: 'eco', title: 'Toyota Elengacia' },
+            { src: 'images/camry-2010.webp', category: 'eco', title: 'Toyota Camry 2010' }
         ];
 
-        // 2. Données des décorations (ajoute/supprime ici)
-        const decorationData = [
-            { src: 'images/voiture-decor1.jpg', category: 'decoration', title: 'Décoration mariage' },
-            { src: 'images/voiture-decoration.jpg', category: 'decoration', title: 'Décoration personnalisée' }
+        // Confort (Véhicules de gamme moyenne)
+        const confortData = [
+            { src: 'images/RAV4.jpg', category: 'confort', title: 'Toyota RAV4' },
+            { src: 'images/RAV 4 2009.jpeg', category: 'confort', title: 'Toyota RAV4 2009' },
+            { src: 'images/RAV 4(2008-2009).jpeg', category: 'confort', title: 'Toyota RAV4 2008-2009' },
+            { src: 'images/Toyota_RAV4-2015.jpg', category: 'confort', title: 'Toyota RAV4 2015' },
+            { src: 'images/RAV 4 (2010-2012).jpeg', category: 'confort', title: 'Toyota RAV4 2010-2012' },
+            { src: 'images/RAV 2017.jpeg', category: 'confort', title: 'Toyota RAV4 2017' },
+            { src: 'images/renault-duster.jpg', category: 'confort', title: 'Renault Duster' },
+            { src: 'images/rush 2019.jpeg', category: 'confort', title: 'Rush 2019' },
+            { src: 'images/SUZUKI.jpeg', category: 'confort', title: 'Suzuki' },
+            { src: 'images/SUZUKI-BLACK.jpeg', category: 'confort', title: 'Suzuki Black' },
+            { src: 'images/SUZUKI VITARA.webp', category: 'confort', title: 'Suzuki Vitara' },
+            { src: 'images/TOYOTA CAMRY 2014.jpeg', category: 'confort', title: 'Toyota Camry 2014' },
+            { src: 'images/Toyota-Camry-2014.jpg', category: 'confort', title: 'Toyota Camry 2014' },
+            { src: 'images/HYLANDER.jpeg', category: 'confort', title: 'Toyota Highlander' },
+            { src: 'images/toyota-highlander.jpg', category: 'confort', title: 'Toyota Highlander' },
+            { src: 'images/KIA SPORTAGE.jpeg', category: 'confort', title: 'Kia Sportage' }
         ];
 
-        // 3. Construction automatique de l'objet principal (SANS DUPLICATION)
+        // Confort Plus (Véhicules supérieurs)
+        const confortPlusData = [
+            { src: 'images/FORTUNER 2022.jpeg', category: 'confortplus', title: 'Toyota Fortuner 2022' },
+            { src: 'images/FORTUNER 2024.jpeg', category: 'confortplus', title: 'Toyota Fortuner 2024' },
+            { src: 'images/PRADO TXL 2022.jpeg', category: 'confortplus', title: 'Toyota Prado TXL 2022' },
+            { src: 'images/Toyota-Prado-TXL-2022.jpg', category: 'confortplus', title: 'Toyota Prado TXL 2022' },
+            { src: 'images/HONDA PILOT 2022.jpeg', category: 'confortplus', title: 'Honda Pilot 2022' },
+            { src: 'images/HYUNDAI 7 PLACES.jpeg', category: 'confortplus', title: 'Hyundai 7 places' },
+            { src: 'images/FORD EXPLORER.jpeg', category: 'confortplus', title: 'Ford Explorer' },
+            { src: 'images/FORD EXPLORER.jpg', category: 'confortplus', title: 'Ford Explorer' }
+        ];
+
+        // Prestige (Véhicules de luxe)
+        const prestigeData = [
+            { src: 'images/PRADO 2024.jpeg', category: 'prestige', title: 'Toyota Prado 2024' },
+            { src: 'images/PRADO 2024.jpg', category: 'prestige', title: 'Toyota Prado 2024' },
+            { src: 'images/PRADO 2024.webp', category: 'prestige', title: 'Toyota Prado 2024' },
+            { src: 'images/LAND CRUISER V8 2022.jpeg', category: 'prestige', title: 'Land Cruiser V8 2022' },
+            { src: 'images/LAND CRUISER V8 2022.jpg', category: 'prestige', title: 'Land Cruiser V8 2022' },
+            { src: 'images/MERCEDES CLASS E.jpeg', category: 'prestige', title: 'Mercedes Classe E' },
+            { src: 'images/MERCEDES E 350.jpg', category: 'prestige', title: 'Mercedes E 350' }
+        ];
+
+        // Prestige Plus (Véhicules ultra luxe)
+        const prestigePlusData = [
+            { src: 'images/ESCADE 2022.jpeg', category: 'prestigeplus', title: 'Cadillac Escalade 2022' },
+            { src: 'images/Escalade-2022.png', category: 'prestigeplus', title: 'Cadillac Escalade' },
+            { src: 'images/JETOUR 12.jpeg', category: 'prestigeplus', title: 'Jetour 12' },
+            { src: 'images/JETOUR T2 2024.jpeg', category: 'prestigeplus', title: 'Jetour T2 2024' },
+            { src: 'images/Jetour-12.webp', category: 'prestigeplus', title: 'Jetour 12' },
+            { src: 'images/LEXUS RX 350.jpeg', category: 'prestigeplus', title: 'Lexus RX 350' },
+            { src: 'images/V6 2022.jpeg', category: 'prestigeplus', title: 'V6 2022' },
+            { src: 'images/LAND ROVER.jpeg', category: 'prestigeplus', title: 'Land Rover' }
+        ];
+
+        // Pick-up
+        const pickupData = [
+            { src: 'images/PICK-UP 2018.jpeg', category: 'pickup', title: 'Pick-up 2018' },
+            { src: 'images/Pick-up MITSUBISHI L200 sport.jpeg', category: 'pickup', title: 'Mitsubishi L200 Sport' },
+            { src: 'images/PICK-UP MITSUBISHI L200 SPORT.jpg', category: 'pickup', title: 'Mitsubishi L200 Sport' },
+            { src: 'images/Pick-up(Toyota Hilux et vigo).jpeg', category: 'pickup', title: 'Toyota Hilux Vigo' },
+            { src: 'images/pickup-toyota.jpg', category: 'pickup', title: 'Toyota Pick-up' },
+            { src: 'images/TOYOTA HILUX.jpeg', category: 'pickup', title: 'Toyota Hilux' },
+            { src: 'images/TOYOTA PICK -UP HILUX 2008.jpeg', category: 'pickup', title: 'Toyota Hilux 2008' },
+            { src: 'images/4 RUNNER.jpeg', category: 'pickup', title: 'Toyota 4 Runner' }
+        ];
+
+        // Mini Bus
+        const minibusData = [
+            { src: 'images/MINI BUS CLIMATISE.jpeg', category: 'minibus', title: 'Mini Bus Climatisé' },
+            { src: 'images/MINI VAN TOYOTA VOXY.jpeg', category: 'minibus', title: 'Toyota Voxy' }
+        ];
+
+        // Bus
+        const busData = [
+            { src: 'images/MINI VAN 14-PLACES.jpeg', category: 'bus', title: 'Mini Van 14 places' }
+        ];
+
+        // Mariage (Décorations)
+        const weddingData = [
+            { src: 'images/WhatsApp Product 2026-04-19 at 14.45.10.jpeg', category: 'wedding', title: 'Décoration de mariage' },
+            { src: 'images/WhatsApp Product 2026-04-19 at 15.48.05.jpeg', category: 'wedding', title: 'Décoration de mariage' },
+            { src: 'images/WhatsApp Product 2026-04-19 at 20.37.11.jpeg', category: 'wedding', title: 'Décoration de mariage' },
+            { src: 'images/WhatsApp Product 2026-04-19 at 20.40.51.jpeg', category: 'wedding', title: 'Décoration de mariage' }
+        ];
+
+        // Construction de l'objet principal
         const galleryData = {
-            all: [...vehiclesData, ...decorationData],  // Fusion automatique
-            vehicles: vehiclesData,                      // Référence directe
-            decoration: decorationData                   // Référence directe
+            all: [...ecoData, ...confortData, ...confortPlusData, ...prestigeData, ...prestigePlusData, ...pickupData, ...minibusData, ...busData, ...weddingData],
+            eco: ecoData,
+            confort: confortData,
+            confortplus: confortPlusData,
+            prestige: prestigeData,
+            prestigeplus: prestigePlusData,
+            pickup: pickupData,
+            minibus: minibusData,
+            bus: busData,
+            wedding: weddingData
         };
 
-        // Variables pour la lightbox
         let currentImages = [];
         let currentIndex = 0;
 
         function filterGallery(category) {
-            // Mettre à jour les boutons actifs
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => {
                 btn.classList.remove('active');
@@ -481,7 +560,6 @@
                 buttons[0].classList.add('active');
             }
             
-            // Récupérer les images filtrées
             currentImages = galleryData[category] || galleryData.all;
             const container = document.getElementById('galleryContainer');
             
@@ -490,7 +568,6 @@
                 return;
             }
             
-            // Générer l'affichage
             container.innerHTML = currentImages.map((img, index) => `
                 <div class="gallery-item" data-index="${index}" onclick="openLightbox(${index})">
                     <img src="${img.src}" alt="${img.title}" onerror="this.src='images/auto.jpg'">
@@ -542,7 +619,6 @@
             counter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
         }
 
-        // Navigation au clavier
         document.addEventListener('keydown', function(e) {
             const lightbox = document.getElementById('lightbox');
             if (lightbox.classList.contains('active')) {
@@ -556,7 +632,6 @@
             }
         });
 
-        // Initialisation
         filterGallery('all');
     </script>
 </body>

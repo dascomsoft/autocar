@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>AUTO CAR - Nos Véhicules | Location SUV, Pick-up, Luxe Cameroun</title>
-    <meta name="description" content="Découvrez notre flotte de véhicules premium : Toyota Land Cruiser, Prado, Lexus, Range Rover, et plus. Tarifs compétitifs au Cameroun.">
+    <title>AUTO CAR - Nos Véhicules | Location de voitures au Cameroun</title>
+    <meta name="description" content="Découvrez notre flotte de véhicules : Classe Éco, Confort, Confort Plus, Prestige, Prestige Plus, Pick-up, Mini Bus, Bus. Location avec chauffeur au Cameroun.">
     <link rel="icon" type="image/png" href="images/autocarlogo.jpg">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        /* Styles spécifiques pour la page véhicules */
         .vehicles-container {
             max-width: 1300px;
             margin: 0 auto;
@@ -36,13 +35,13 @@
         .vehicles-filters {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 0.8rem;
             margin-bottom: 3rem;
             flex-wrap: wrap;
         }
 
         .filter-btn {
-            padding: 0.75rem 2rem;
+            padding: 0.7rem 1.5rem;
             background: rgba(51, 65, 85, 0.5);
             border: 1px solid rgba(34, 197, 94, 0.3);
             border-radius: 50px;
@@ -50,7 +49,7 @@
             cursor: pointer;
             transition: all 0.3s;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
 
         .filter-btn:hover, .filter-btn.active {
@@ -72,7 +71,6 @@
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             transition: all 0.4s ease;
-            animation: fadeInUp 0.5s ease forwards;
         }
 
         .vehicle-card:hover {
@@ -98,11 +96,11 @@
         .vehicle-info h3 {
             color: #22c55e;
             margin-bottom: 0.5rem;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
 
         .vehicle-location {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #94a3b8;
             margin-bottom: 0.8rem;
             display: flex;
@@ -116,14 +114,14 @@
 
         .vehicle-description {
             color: #cbd5e1;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             line-height: 1.5;
             margin-bottom: 1rem;
         }
 
         .price-list {
             background: rgba(51, 65, 85, 0.5);
-            padding: 1rem;
+            padding: 0.8rem;
             border-radius: 12px;
             margin: 1rem 0;
         }
@@ -131,7 +129,7 @@
         .price-list h4 {
             margin-bottom: 0.5rem;
             color: #e2e8f0;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
         }
 
         .price-list ul {
@@ -140,8 +138,8 @@
         }
 
         .price-list li {
-            padding: 0.3rem 0;
-            font-size: 0.85rem;
+            padding: 0.25rem 0;
+            font-size: 0.8rem;
             color: #cbd5e1;
             border-bottom: 1px dashed rgba(34,197,94,0.2);
         }
@@ -155,13 +153,13 @@
             margin-top: 1rem;
             background: linear-gradient(135deg, #22c55e, #16a34a);
             border: none;
-            padding: 0.8rem;
+            padding: 0.7rem;
             border-radius: 10px;
             font-weight: bold;
             color: white;
             cursor: pointer;
             transition: all 0.3s;
-            font-size: 1rem;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -195,7 +193,6 @@
             width: 90%;
             color: white;
             border: 1px solid rgba(34,197,94,0.3);
-            animation: fadeInUp 0.3s ease;
         }
 
         .modal-header {
@@ -209,7 +206,7 @@
 
         .modal-header h3 {
             color: #22c55e;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
 
         .close {
@@ -242,14 +239,12 @@
             background: rgba(15, 23, 42, 0.8);
             color: white;
             font-family: 'Nunito', sans-serif;
-            transition: all 0.3s;
         }
 
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: #22c55e;
-            box-shadow: 0 0 10px rgba(34,197,94,0.2);
         }
 
         @keyframes fadeInUp {
@@ -263,13 +258,14 @@
             }
         }
 
+        .vehicle-card {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
         @media (max-width: 1024px) {
             .vehicles-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1.5rem;
-            }
-            .vehicles-container {
-                padding: 1.5rem;
             }
         }
 
@@ -277,19 +273,15 @@
             .vehicles-header h1 {
                 font-size: 2rem;
             }
-            .vehicles-header p {
-                font-size: 1rem;
-            }
             .filter-btn {
-                padding: 0.5rem 1.2rem;
-                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
             }
         }
 
         @media (max-width: 600px) {
             .vehicles-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
             }
             .vehicles-container {
                 padding: 1rem;
@@ -341,18 +333,23 @@
             <h1 data-aos="fade-up">Nos Véhicules</h1>
             <p data-aos="fade-up" data-aos-delay="200">Choisissez le véhicule idéal parmi notre flotte premium</p>
             <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
-                <button class="btn filter-trigger active" data-filter="all">🚗 Tous</button>
-                <button class="btn btn-outline filter-trigger" data-filter="suv">🏔️ SUV</button>
-                <button class="btn btn-outline filter-trigger" data-filter="pickup">🛻 Pick-up</button>
-                <button class="btn btn-outline filter-trigger" data-filter="luxe">💎 Luxe</button>
-                <button class="btn btn-outline filter-trigger" data-filter="minibus">🚐 Mini Bus</button>
+                <button class="btn filter-trigger active" data-filter="all">Tous</button>
+                <button class="btn btn-outline filter-trigger" data-filter="eco">Classe Éco</button>
+                <button class="btn btn-outline filter-trigger" data-filter="confort">Confort</button>
+                <button class="btn btn-outline filter-trigger" data-filter="confortplus">Confort Plus</button>
+                <button class="btn btn-outline filter-trigger" data-filter="prestige">Prestige</button>
+                <button class="btn btn-outline filter-trigger" data-filter="prestigeplus">Prestige Plus</button>
+                <button class="btn btn-outline filter-trigger" data-filter="pickup">Pick-up</button>
+                <button class="btn btn-outline filter-trigger" data-filter="minibus">Mini Bus</button>
+                <button class="btn btn-outline filter-trigger" data-filter="bus">Bus</button>
+                <button class="btn btn-outline filter-trigger" data-filter="wedding">Mariage</button>
             </div>
         </div>
     </section>
 
     <div class="vehicles-container">
         <div class="vehicles-header" data-aos="fade-up">
-            <h1>🚘 Notre Flotte Premium</h1>
+            <h1>Notre Flotte Premium</h1>
             <p>Des véhicules récents, entretenus et disponibles immédiatement</p>
         </div>
         <div id="vehiclesContainer" class="vehicles-grid"></div>
@@ -362,19 +359,19 @@
     <div id="reservationModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>📝 Réserver <span id="modalVehicleName"></span></h3>
+                <h3>Réserver <span id="modalVehicleName"></span></h3>
                 <span class="close" onclick="closeModal()">&times;</span>
             </div>
             <form id="reservationForm">
                 <div class="form-group">
                     <label>Type de location :</label>
                     <select id="reservationType" required>
-                        <option value="inCity">🏙️ Dans la ville</option>
-                        <option value="outCity">🌍 Hors ville</option>
-                        <option value="outCityMultiDay">🌍 Hors ville (+1 jour)</option>
-                        <option value="outCityRoundTrip">🔄 A/R Hors ville</option>
-                        <option value="wedding">💒 Mariage sans décoration</option>
-                        <option value="weddingWithDeco">💒💕 Mariage avec décoration</option>
+                        <option value="inCity">Dans la ville</option>
+                        <option value="outCity">Hors ville</option>
+                        <option value="outCityMultiDay">Hors ville (plusieurs jours)</option>
+                        <option value="outCityRoundTrip">Aller/Retour Hors ville</option>
+                        <option value="wedding">Mariage sans décoration</option>
+                        <option value="weddingWithDeco">Mariage avec décoration</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -444,198 +441,409 @@
         });
 
         // ============================================
-        // DONNÉES DES VÉHICULES - COMPLÈTES
+        // DONNÉES DES VÉHICULES - CLASSIFICATION PAR PRIX
         // ============================================
         
         const vehiclesData = [
-            // Véhicules existants
+            // ========== CLASSE ÉCO (20 000 - 40 000 FRS) ==========
             {
                 id: 1,
-                name: "Toyota Hilux / Vigo (Pick-up)",
-                category: "pickup",
-                location: "Disponible partout",
-                mainImage: "images/toyotapickup-hilux.jpg",
-                prices: {
-                    inCity: 60000,
-                    outCityMultiDay: 70000,
-                    outCityRoundTrip: 80000
-                },
-                description: "Pick-up robuste idéal pour le transport de marchandises et les terrains difficiles"
+                name: "Toyota Yaris",
+                category: "eco",
+                location: "Disponible à Douala",
+                mainImage: "images/TOYOTA-YARIS-2010.jpeg",
+                prices: { inCity: 20000, outCity: 25000, wedding: 25000, weddingWithDeco: 40000 },
+                description: "Véhicule économique et fiable, parfait pour la ville. Climatisé."
             },
             {
                 id: 2,
-                name: "Hyundai Santa Fe",
-                category: "suv",
+                name: "Toyota Yaris Coupe Corolla",
+                category: "eco",
                 location: "Disponible partout",
-                mainImage: "images/auto.jpg",
-                prices: {
-                    inCity: 60000,
-                    outCity: 70000,
-                    wedding: 80000,
-                    weddingWithDeco: 110000,
-                    weddingWithDecoFull: 150000
-                },
-                description: "SUV confortable parfait pour la famille et les longs trajets"
+                mainImage: "images/toyota-yaris-coupe-corolla.jpeg",
+                prices: { inCity: 20000, outCity: 25000, wedding: 25000, weddingWithDeco: 45000 },
+                description: "Compacte et élégante, idéale pour les déplacements urbains."
             },
             {
                 id: 3,
-                name: "Toyota Fortuner 2024",
-                category: "suv",
-                location: "Disponible partout",
-                mainImage: "images/TOYOTA-FORTUNER-1.jpg",
-                prices: {
-                    inCity: 100000,
-                    outCityMultiDay: 120000,
-                    outCityRoundTrip: 130000,
-                    wedding: 130000,
-                    weddingWithDeco: 200000
-                },
-                description: "SUV premium alliant puissance et élégance"
+                name: "Toyota 115",
+                category: "eco",
+                location: "Disponible à Douala",
+                mainImage: "images/toyota-115.jpg",
+                prices: { inCity: 25000, outCity: 35000, wedding: 30000 },
+                description: "Véhicule robuste et économique pour vos trajets quotidiens."
             },
             {
                 id: 4,
-                name: "Toyota RAV4 (2005)",
-                category: "suv",
+                name: "Nissan LMR",
+                category: "eco",
                 location: "Disponible à Yaoundé",
-                mainImage: "images/2005_Toyota_RAV4_05.jpg",
-                prices: {
-                    inCity: 40000,
-                    outCity: 50000
-                },
-                description: "SUV compact fiable et économique"
+                mainImage: "images/NISSAN-LMR.jpeg",
+                prices: { inCity: 25000, outCity: 30000, wedding: 35000, weddingWithDeco: 50000 },
+                description: "Berline confortable et économique."
             },
             {
                 id: 5,
-                name: "Toyota Auris",
-                category: "suv",
-                location: "Disponible à Douala",
-                mainImage: "images/auto2.jpg",
-                prices: {
-                    inCity: 30000,
-                    outCity: 40000,
-                    wedding: 40000
-                },
-                description: "Berline compacte idéale pour la ville"
+                name: "Avensis Tête de Cochon",
+                category: "eco",
+                location: "Disponible à Yaoundé",
+                mainImage: "images/avensis-tete-cochon.jpeg",
+                prices: { inCity: 20000, outCity: 25000, outCityRoundTrip: 30000, wedding: 40000 },
+                description: "Véhicule spacieux non climatisé. Idéal pour les mariages."
             },
             {
                 id: 6,
-                name: "Rush 2019",
-                category: "suv",
-                location: "Disponible à Bafoussam",
-                mainImage: "images/auto3.jpg",
-                prices: {
-                    inCity: 75000,
-                    outCity: 90000,
-                    wedding: 90000
-                },
-                description: "SUV spacieux pour toute la famille"
+                name: "Mazda 3",
+                category: "eco",
+                location: "Disponible à Douala",
+                mainImage: "images/Mazda-3.jpg",
+                prices: { inCity: 25000, outCity: 40000, wedding: 30000, weddingFull: 50000 },
+                description: "Berline élégante et dynamique."
             },
             {
                 id: 7,
-                name: "Land Rover",
-                category: "luxe",
-                location: "Disponible à Yaoundé",
-                mainImage: "images/LAND ROVER.jpg",
-                prices: {
-                    inCity: 40000,
-                    outCity: 50000
-                },
-                description: "SUV de luxe tout-terrain"
+                name: "Toyota Avensis Verso (7 places)",
+                category: "eco",
+                location: "Disponible à Douala",
+                mainImage: "images/toyota-avensis-verso.jpg",
+                prices: { inCity: 35000, outCityMultiDay: 40000, outCityRoundTrip: 50000 },
+                description: "Monospace 7 places, idéal pour les familles."
             },
             {
                 id: 8,
-                name: "Jetour X70",
-                category: "luxe",
-                location: "Disponible partout",
-                mainImage: "images/2025-jetour-x70.jpeg",
-                prices: {
-                    inCity: 300000,
-                    outCity: 400000,
-                    wedding: 400000,
-                    weddingWithDeco: 500000
-                },
-                description: "SUV de luxe moderne avec équipements haut de gamme"
+                name: "Toyota Verso",
+                category: "eco",
+                location: "Disponible à Yaoundé",
+                mainImage: "images/toyota-verso.jpeg",
+                prices: { inCity: 35000, outCityMultiDay: 45000, outCityRoundTrip: 50000, weddingFull: 70000 },
+                description: "Monospace 7 places confortable."
             },
-            // NOUVEAUX VÉHICULES
             {
                 id: 9,
-                name: "Land Cruiser V8 2022",
-                category: "luxe",
-                location: "Disponible partout",
-                mainImage: "images/landcruiser.jpg",
-                prices: {
-                    inCity: 200000,
-                    outCityMultiDay: 250000,
-                    outCityRoundTrip: 300000
-                },
-                description: "Le roi des SUV, puissance et luxe absolu. Confort exceptionnel pour vos déplacements premium."
+                name: "Mazda Elentra",
+                category: "eco",
+                location: "Disponible à Douala",
+                mainImage: "images/mazda-elantra.jpg",
+                prices: { inCity: 35000, outCity: 40000, wedding: 40000, weddingFull: 70000 },
+                description: "Berline élégante et économique."
             },
             {
                 id: 10,
-                name: "Prado TXL 2022",
-                category: "suv",
-                location: "Disponible partout",
-                mainImage: "images/prado2024.webp",
-                prices: {
-                    inCity: 100000,
-                    outCityRoundTrip: 120000,
-                    outCityMultiDay: 110000,
-                    wedding: 120000,
-                    weddingWithDeco: 200000
-                },
-                description: "Prado TXL 2022 blanche, sièges beiges. Élégance et confort pour vos déplacements."
+                name: "Toyota Auris",
+                category: "eco",
+                location: "Disponible à Douala",
+                mainImage: "images/toyota-auris.jpeg",
+                prices: { inCity: 30000, outCity: 40000, wedding: 40000 },
+                description: "Berline compacte idéale pour la ville."
             },
             {
                 id: 11,
-                name: "Prado 2024",
-                category: "luxe",
-                location: "Disponible à Bafoussam",
-                mainImage: "images/auto3.jpg",
-                prices: {
-                    inCity: 150000,
-                    outCity: 175000,
-                    wedding: 175000
-                },
-                description: "Le nouveau Prado 2024, design moderne et performances exceptionnelles."
+                name: "RAV 4 2005",
+                category: "eco",
+                location: "Disponible à Yaoundé",
+                mainImage: "images/RAV4.jpg",
+                prices: { inCity: 40000, outCity: 50000 },
+                description: "SUV compact fiable et économique."
             },
             {
                 id: 12,
-                name: "Mini Bus Climatisé",
-                category: "minibus",
-                location: "Disponible à Yaoundé",
-                mainImage: "images/hiace.jpg",
-                prices: {
-                    inCity: 150000,
-                    outCity: 150000
-                },
-                description: "Mini bus climatisé idéal pour les groupes, familles nombreuses et événements. Dans la ville : carburant inclus. Hors ville : carburant à votre charge."
+                name: "Hyundai Elantra",
+                category: "eco",
+                location: "Disponible à Douala",
+                mainImage: "images/HYUNDAI-ELENTRA.jpeg",
+                prices: { inCity: 40000, outCity: 50000, wedding: 50000, weddingFull: 80000 },
+                description: "Berline moderne et confortable."
             },
+
+            // ========== CONFORT (50 000 - 90 000 FRS) ==========
             {
                 id: 13,
-                name: "Hyundai Elantra",
-                category: "suv",
-                location: "Disponible à Douala",
-                mainImage: "images/hyundai-elantra.jpg",
-                prices: {
-                    inCity: 40000,
-                    outCity: 50000,
-                    wedding: 50000
-                },
-                description: "Berline élégante et économique, parfaite pour vos déplacements en ville."
+                name: "RAV 4 2009",
+                category: "confort",
+                location: "Disponible partout",
+                mainImage: "images/RAV 4 2009.jpeg",
+                prices: { inCity: 50000, outCity: 60000, wedding: 60000, weddingWithDeco: 90000, weddingFull: 80000, weddingFullWithDeco: 120000 },
+                description: "SUV confortable et fiable."
             },
             {
                 id: 14,
-                name: "Toyota Highlander 2019",
+                name: "Toyota Pick-up Hilux 2008",
+                category: "pickup",
+                location: "Disponible à Yaoundé",
+                mainImage: "images/TOYOTA PICK -UP HILUX  2008.jpeg",
+                prices: { inCity: 50000, outCity: 60000 },
+                description: "Pick-up robuste pour tous vos travaux."
+            },
+            {
+                id: 15,
+                name: "Suzuki Vitara",
+                category: "confort",
+                location: "Disponible partout",
+                mainImage: "images/SUZUKI.jpeg",
+                prices: { inCity: 50000, outCity: 60000, outCityRoundTrip: 70000, wedding: 60000, weddingWithDeco: 100000, weddingFull: 100000 },
+                description: "SUV compact et dynamique."
+            },
+            {
+                id: 16,
+                name: "Toyota Camry 2014",
+                category: "confort",
+                location: "Disponible partout",
+                mainImage: "images/TOYOTA CAMRY 2014.jpeg",
+                prices: { inCity: 60000, outCity: 70000, wedding: 70000, weddingFull: 120000 },
+                description: "Berline de prestige, confort exceptionnel."
+            },
+            {
+                id: 17,
+                name: "Toyota Hilux",
+                category: "pickup",
+                location: "Disponible partout",
+                mainImage: "images/TOYOTA HILUX.jpeg",
+                prices: { inCity: 60000, outCity: 80000 },
+                description: "Pick-up robuste et puissant."
+            },
+            {
+                id: 18,
+                name: "Pick-up Mitsubishi L200 Sport",
+                category: "pickup",
+                location: "Disponible à Yaoundé",
+                mainImage: "images/Pick-up MITSUBISHI L200 sport.jpeg",
+                prices: { inCity: 60000, outCityMultiDay: 70000, outCityRoundTrip: 80000 },
+                description: "Pick-up sportif et performant."
+            },
+            {
+                id: 19,
+                name: "Hyundai Santa Fe",
+                category: "suv",
+                location: "Disponible partout",
+                mainImage: "images/HYUNDAI 7 PLACES.jpeg",
+                prices: { inCity: 60000, outCity: 70000, wedding: 80000, weddingWithDeco: 110000, weddingFull: 150000 },
+                description: "SUV 7 places, confortable et spacieux."
+            },
+            {
+                id: 20,
+                name: "Toyota Elengancia",
+                category: "confort",
+                location: "Disponible à Douala",
+                mainImage: "images/toyota-elangacia.jpeg",
+                prices: { inCity: 40000, outCity: 50000, wedding: 50000, weddingFull: 80000 },
+                description: "Berline élégante et confortable."
+            },
+            {
+                id: 21,
+                name: "Land Rover",
+                category: "confort",
+                location: "Disponible à Yaoundé",
+                mainImage: "images/LAND ROVER.jpeg",
+                prices: { inCity: 40000, outCity: 50000 },
+                description: "SUV de luxe tout-terrain."
+            },
+            {
+                id: 22,
+                name: "Rush 2019",
+                category: "confort",
+                location: "Disponible à Bafoussam",
+                mainImage: "images/rush 2019.jpeg",
+                prices: { inCity: 75000, outCity: 90000, wedding: 90000 },
+                description: "SUV spacieux pour toute la famille."
+            },
+            {
+                id: 23,
+                name: "Highlander",
+                category: "confort",
+                location: "Disponible partout",
+                mainImage: "images/HYLANDER.jpeg",
+                prices: { inCity: 75000, outCity: 85000, outCityRoundTrip: 90000, wedding: 90000, weddingFull: 150000 },
+                description: "SUV familial de luxe."
+            },
+            {
+                id: 24,
+                name: "RAV 4 2015",
+                category: "confort",
+                location: "Disponible à Yaoundé",
+                mainImage: "images/RAV 2017.jpeg",
+                prices: { inCity: 75000, outCity: 85000 },
+                description: "SUV moderne et confortable."
+            },
+            {
+                id: 25,
+                name: "Ford Explorer",
                 category: "suv",
                 location: "Disponible à Douala",
-                mainImage: "images/auto9.jpg",
-                prices: {
-                    inCity: 100000,
-                    outCityMultiDay: 120000,
-                    outCityRoundTrip: 130000,
-                    wedding: 130000
-                },
-                description: "SUV familial spacieux, confortable et fiable pour tous vos voyages."
+                mainImage: "images/FORD EXPLORER.jpeg",
+                prices: { inCity: 80000, outCity: 100000, wedding: 100000 },
+                description: "SUV américain spacieux et puissant."
+            },
+            {
+                id: 26,
+                name: "Suzuki",
+                category: "confort",
+                location: "Disponible à Yaoundé",
+                mainImage: "images/SUZUKI.jpeg",
+                prices: { inCity: 60000, outCity: 70000, wedding: 80000, weddingWithDeco: 110000 },
+                description: "SUV compact et économique."
+            },
+
+            // ========== CONFORT PLUS (100 000 - 150 000 FRS) ==========
+            {
+                id: 27,
+                name: "Prado TXL 2022",
+                category: "confortplus",
+                location: "Disponible partout",
+                mainImage: "images/PRADO TXL 2022.jpeg",
+                prices: { inCity: 100000, outCityRoundTrip: 120000, outCityMultiDay: 110000, wedding: 120000, weddingFull: 200000 },
+                description: "Prado TXL 2022 blanche, sièges beiges. Élégance et confort."
+            },
+            {
+                id: 28,
+                name: "Toyota Fortuner 2024",
+                category: "confortplus",
+                location: "Disponible partout",
+                mainImage: "images/FORTUNER 2024.jpeg",
+                prices: { inCity: 100000, outCityMultiDay: 120000, outCityRoundTrip: 130000, wedding: 130000, weddingWithDeco: 200000 },
+                description: "SUV premium alliant puissance et élégance."
+            },
+            {
+                id: 29,
+                name: "Prado TXL 2022 (Douala)",
+                category: "confortplus",
+                location: "Disponible à Douala",
+                mainImage: "images/PRADO TXL 2022.jpeg",
+                prices: { inCity: 120000, outCity: 130000, outCityRoundTrip: 140000, wedding: 130000, weddingFull: 200000 },
+                description: "Prado TXL 2022, confort et puissance."
+            },
+            {
+                id: 30,
+                name: "Mercedes E 350",
+                category: "confortplus",
+                location: "Disponible partout",
+                mainImage: "images/MERCEDES CLASS E.jpeg",
+                prices: { inCity: 130000 },
+                description: "Berline de luxe allemande."
+            },
+            {
+                id: 31,
+                name: "Fortuner 2024 (Bafoussam)",
+                category: "confortplus",
+                location: "Disponible à Bafoussam",
+                mainImage: "images/FORTUNER 2024.jpeg",
+                prices: { inCity: 120000, outCity: 150000, wedding: 150000 },
+                description: "SUV premium disponible à Bafoussam."
+            },
+            {
+                id: 32,
+                name: "Prado 2024 (Bafoussam)",
+                category: "confortplus",
+                location: "Disponible à Bafoussam",
+                mainImage: "images/PRADO 2024.jpeg",
+                prices: { inCity: 150000, outCity: 175000, wedding: 175000 },
+                description: "Le nouveau Prado 2024, design moderne."
+            },
+            {
+                id: 33,
+                name: "Mini Bus Climatisé",
+                category: "minibus",
+                location: "Disponible à Yaoundé",
+                mainImage: "images/MINI BUS CLIMATISE.jpeg",
+                prices: { inCity: 150000, outCity: 150000 },
+                description: "Mini bus climatisé pour groupes. Ville : carburant inclus."
+            },
+
+            // ========== PRESTIGE (160 000 - 200 000 FRS) ==========
+            {
+                id: 34,
+                name: "Jetour T2 2024",
+                category: "prestige",
+                location: "Disponible à Douala et Yaoundé",
+                mainImage: "images/JETOUR T2 2024.jpeg",
+                prices: { inCity: 170000, outCity: 200000, wedding: 200000 },
+                description: "SUV de luxe moderne."
+            },
+            {
+                id: 35,
+                name: "Prado 2024",
+                category: "prestige",
+                location: "Disponible partout",
+                mainImage: "images/PRADO 2024.jpeg",
+                prices: { inCity: 150000, outCity: 180000, outCityRoundTrip: 200000, wedding: 200000, weddingWithDeco: 250000, weddingFull: 300000, weddingFullWithDeco: 350000 },
+                description: "Le nouveau Prado 2024, luxe et performance."
+            },
+            {
+                id: 36,
+                name: "Land Cruiser V8 2022",
+                category: "prestige",
+                location: "Disponible partout",
+                mainImage: "images/LAND CRUISER V8 2022.jpeg",
+                prices: { inCity: 200000, outCityMultiDay: 250000, outCityRoundTrip: 300000 },
+                description: "Le roi des SUV, puissance et luxe absolu."
+            },
+
+            // ========== PRESTIGE PLUS (210 000 - 500 000 FRS) ==========
+            {
+                id: 37,
+                name: "Mercedes CS",
+                category: "prestigeplus",
+                location: "Disponible partout",
+                mainImage: "images/MERCEDES CLASS E.jpeg",
+                prices: { inCity: 250000, outCity: 300000 },
+                description: "Berline de luxe suprême."
+            },
+            {
+                id: 38,
+                name: "Jetour X70",
+                category: "prestigeplus",
+                location: "Disponible partout",
+                mainImage: "images/JETOUR 12.jpeg",
+                prices: { inCity: 300000, outCity: 400000, wedding: 400000, weddingWithDeco: 500000 },
+                description: "SUV de luxe moderne avec équipements haut de gamme."
+            },
+            {
+                id: 39,
+                name: "Escala 2022",
+                category: "prestigeplus",
+                location: "Disponible à Yaoundé",
+                mainImage: "images/ESCADE 2022.jpeg",
+                prices: { inCity: 400000, outCity: 500000, wedding: 500000, weddingWithDeco: 600000, weddingFull: 700000 },
+                description: "Berline de luxe exceptionnelle."
+            },
+
+            // ========== PICK-UP supplémentaires ==========
+            {
+                id: 40,
+                name: "Pick-up 2018",
+                category: "pickup",
+                location: "Disponible partout",
+                mainImage: "images/PICK-UP 2018.jpeg",
+                prices: { inCity: 50000, outCity: 60000 },
+                description: "Pick-up robuste pour tous vos besoins."
+            },
+            {
+                id: 41,
+                name: "Toyota Pick-up Hilux 2008",
+                category: "pickup",
+                location: "Disponible à Yaoundé",
+                mainImage: "images/TOYOTA PICK -UP HILUX  2008.jpeg",
+                prices: { inCity: 50000, outCity: 60000 },
+                description: "Pick-up fiable et économique."
+            },
+
+            // ========== BUS ==========
+            {
+                id: 42,
+                name: "Mini Van 14 places",
+                category: "bus",
+                location: "Disponible partout",
+                mainImage: "images/MINI VAN 14-PLACES.jpeg",
+                prices: { inCity: 150000, outCity: 180000 },
+                description: "Minibus 14 places pour grands groupes."
+            },
+            {
+                id: 43,
+                name: "Mini Van Toyota Voxy",
+                category: "bus",
+                location: "Disponible partout",
+                mainImage: "images/MINI VAN TOYOTA VOXY.jpeg",
+                prices: { inCity: 120000, outCity: 150000 },
+                description: "Minibus japonais confortable."
             }
         ];
 
@@ -647,14 +855,20 @@
             const container = document.getElementById('vehiclesContainer');
             let filtered = vehiclesData;
             
-            if (category === 'suv') {
-                filtered = vehiclesData.filter(v => v.category === 'suv');
-            } else if (category === 'pickup') {
-                filtered = vehiclesData.filter(v => v.category === 'pickup');
-            } else if (category === 'luxe') {
-                filtered = vehiclesData.filter(v => v.category === 'luxe');
-            } else if (category === 'minibus') {
-                filtered = vehiclesData.filter(v => v.category === 'minibus');
+            const categoryMap = {
+                'eco': 'eco',
+                'confort': 'confort',
+                'confortplus': 'confortplus',
+                'prestige': 'prestige',
+                'prestigeplus': 'prestigeplus',
+                'pickup': 'pickup',
+                'minibus': 'minibus',
+                'bus': 'bus',
+                'wedding': 'wedding'
+            };
+            
+            if (categoryMap[category]) {
+                filtered = vehiclesData.filter(v => v.category === categoryMap[category]);
             }
             
             if (filtered.length === 0) {
@@ -670,14 +884,15 @@
                         <p class="vehicle-location"><i class="fas fa-map-marker-alt"></i> ${vehicle.location}</p>
                         <p class="vehicle-description">${vehicle.description}</p>
                         <div class="price-list">
-                            <h4>📋 Tarifs :</h4>
+                            <h4>Tarifs :</h4>
                             <ul>
-                                ${vehicle.prices.inCity ? `<li>🏙️ Ville : ${vehicle.prices.inCity.toLocaleString()} FRS CFA/jour</li>` : ''}
-                                ${vehicle.prices.outCity ? `<li>🌍 Hors ville : ${vehicle.prices.outCity.toLocaleString()} FRS CFA/jour</li>` : ''}
-                                ${vehicle.prices.outCityMultiDay ? `<li>🌍 Hors ville (+1j) : ${vehicle.prices.outCityMultiDay.toLocaleString()} FRS CFA/jour</li>` : ''}
-                                ${vehicle.prices.outCityRoundTrip ? `<li>🔄 A/R Hors ville : ${vehicle.prices.outCityRoundTrip.toLocaleString()} FRS CFA</li>` : ''}
-                                ${vehicle.prices.wedding ? `<li>💒 Mariage (07h-22h) : ${vehicle.prices.wedding.toLocaleString()} FRS CFA</li>` : ''}
-                                ${vehicle.prices.weddingWithDeco ? `<li>💒💕 Mariage avec déco : ${vehicle.prices.weddingWithDeco.toLocaleString()} FRS CFA</li>` : ''}
+                                ${vehicle.prices.inCity ? `<li>Ville : ${vehicle.prices.inCity.toLocaleString()} FRS CFA/jour</li>` : ''}
+                                ${vehicle.prices.outCity ? `<li>Hors ville : ${vehicle.prices.outCity.toLocaleString()} FRS CFA/jour</li>` : ''}
+                                ${vehicle.prices.outCityMultiDay ? `<li>Hors ville (plusieurs jours) : ${vehicle.prices.outCityMultiDay.toLocaleString()} FRS CFA/jour</li>` : ''}
+                                ${vehicle.prices.outCityRoundTrip ? `<li>Aller/Retour Hors ville : ${vehicle.prices.outCityRoundTrip.toLocaleString()} FRS CFA</li>` : ''}
+                                ${vehicle.prices.wedding ? `<li>Mariage (07h-22h) : ${vehicle.prices.wedding.toLocaleString()} FRS CFA</li>` : ''}
+                                ${vehicle.prices.weddingWithDeco ? `<li>Mariage avec décoration : ${vehicle.prices.weddingWithDeco.toLocaleString()} FRS CFA</li>` : ''}
+                                ${vehicle.prices.weddingFull ? `<li>Mariage (07h-07h) : ${vehicle.prices.weddingFull.toLocaleString()} FRS CFA</li>` : ''}
                             </ul>
                         </div>
                         <button class="btn-reserver" onclick="openReservationModal(${vehicle.id})">
@@ -706,45 +921,33 @@
             let prix = 0;
             let typeText = '';
             
-            switch(type) {
-                case 'inCity':
-                    prix = currentVehicle.prices.inCity;
-                    typeText = 'Dans la ville';
-                    break;
-                case 'outCity':
-                    prix = currentVehicle.prices.outCity || currentVehicle.prices.outCityMultiDay;
-                    typeText = 'Hors ville';
-                    break;
-                case 'outCityMultiDay':
-                    prix = currentVehicle.prices.outCityMultiDay;
-                    typeText = 'Hors ville pour plus d\'1 jour';
-                    break;
-                case 'outCityRoundTrip':
-                    prix = currentVehicle.prices.outCityRoundTrip;
-                    typeText = 'A/R Hors ville (même jour)';
-                    break;
-                case 'wedding':
-                    prix = currentVehicle.prices.wedding;
-                    typeText = 'Mariage sans décoration (07h-22h)';
-                    break;
-                case 'weddingWithDeco':
-                    prix = currentVehicle.prices.weddingWithDeco;
-                    typeText = 'Mariage avec décoration (07h-22h)';
-                    break;
-                default:
-                    prix = currentVehicle.prices.inCity;
-                    typeText = 'Standard';
+            const priceMap = {
+                'inCity': { key: 'inCity', text: 'Dans la ville' },
+                'outCity': { key: 'outCity', text: 'Hors ville' },
+                'outCityMultiDay': { key: 'outCityMultiDay', text: 'Hors ville (plusieurs jours)' },
+                'outCityRoundTrip': { key: 'outCityRoundTrip', text: 'Aller/Retour Hors ville' },
+                'wedding': { key: 'wedding', text: 'Mariage sans décoration (07h-22h)' },
+                'weddingWithDeco': { key: 'weddingWithDeco', text: 'Mariage avec décoration (07h-22h)' }
+            };
+            
+            const selected = priceMap[type];
+            if (selected && currentVehicle.prices[selected.key]) {
+                prix = currentVehicle.prices[selected.key];
+                typeText = selected.text;
+            } else {
+                prix = currentVehicle.prices.inCity || 0;
+                typeText = 'Standard';
             }
             
             const details = document.getElementById('reservationDetails').value;
             const phoneNumber = "237690977410";
-            let message = `🛑 Merci d'avoir contacté AUTO CAR 🚐%0A%0A`;
-            message += `📍 Véhicule : ${currentVehicle.name}%0A`;
-            message += `📍 Type de location : ${typeText}%0A`;
-            message += `💰 Prix : ${prix.toLocaleString()} FRS CFA%0A`;
-            message += `📍 Disponibilité : ${currentVehicle.location}%0A`;
-            if(details) message += `%0A📝 Détails : ${details}%0A`;
-            message += `%0A🛑 Ville, dates et destination à confirmer%0A`;
+            let message = `Merci d'avoir contacté AUTO CAR%0A%0A`;
+            message += `Véhicule : ${currentVehicle.name}%0A`;
+            message += `Type de location : ${typeText}%0A`;
+            message += `Prix : ${prix.toLocaleString()} FRS CFA%0A`;
+            message += `Disponibilité : ${currentVehicle.location}%0A`;
+            if(details) message += `%0ADétails : ${details}%0A`;
+            message += `%0AVeuillez confirmer votre ville, dates et destination.`;
             
             window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
             closeModal();
